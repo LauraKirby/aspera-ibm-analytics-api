@@ -2,6 +2,12 @@
 
 1. Generate private and public keys
 
+  ```bash
+  ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
+  ```
+
+  * when prompted, press enter twice to greate a key without a passphrase.
+
    <div class="demo-image">
      <img src="images/2-generate-keys.png"/>
    </div>
@@ -13,6 +19,10 @@
    </div>
 
 1. Configure the public key for openssl
+
+  ```bash
+  openssl rsa -in jwtRS256.key -pubout -outform PEM -out jwtRS256.key.pub
+  ```
 
    <div class="demo-image">
      <img src="images/4-configure-jwt-for-openssl.png"/>
@@ -73,6 +83,10 @@
    </div>
 
 1. Back in terminal, create an empty `.config.yml` file.
+
+  ```bash
+  touch config.yml
+  ```
 
    <div class="demo-image">
      <img src="images/14-create-empty-config.png"/>
