@@ -21,7 +21,7 @@ For spimlicity purposes, all files that will be required for this demo will be s
 
 The rest of this tutorial assumes that any time we are using terminal, we are in this newly created directory.
 
-## Integration & Authorization Setup
+## Step 1: Integration & Authorization Setup
 
 * Follow [these setup intructions](./setup.md) to obtain the following pieces of required information:
   * Client ID
@@ -30,6 +30,6 @@ The rest of this tutorial assumes that any time we are using terminal, we are in
   * JWT public
   * New AoC Integration
 
-## Files Authorization & Analytics Requests
+## Step 2: Files Authorization & Analytics Requests
 
 * [Analytics API](./analytics-api.md)
