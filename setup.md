@@ -40,13 +40,13 @@
      <img src="images/6-new-form.png"/>
    </div>
 
-1. Fill out form, for the purpose of the Analytics API, the "Redirect URIs" and "Orgins" can be any random value. Click "Save".
+1. Fill out form, for the purpose of the Analytics API, the "Redirect URIs" and "Orgins" can be any value. Click "Save".
 
    <div class="demo-image">
      <img src="images/7-new-form-filled-out.png"/>
    </div>
 
-1. You should now be looking at your "Profile".
+1. You should now be looking at your newly created Integration's "Profile".
 
    <div class="demo-image">
      <img src="images/8-profile-details.png"/>
