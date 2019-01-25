@@ -151,10 +151,6 @@
  <span class="n">payload</span> <span class="o">=</span> <span class="n">base64url_encode</span><span class="p">(</span><span class="n">request_header</span><span class="p">.</span><span class="nf">to_json</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'.'</span> <span class="o">+</span> <span class="n">base64url_encode</span><span class="p">(</span><span class="n">request_body</span><span class="p">.</span><span class="nf">to_json</span><span class="p">)</span>
  <span class="n">signed</span> <span class="o">=</span> <span class="n">private_key</span><span class="p">.</span><span class="nf">sign</span><span class="p">(</span><span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="o">::</span><span class="no">SHA256</span><span class="p">.</span><span class="nf">new</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
  <span class="n">jwt_token</span> <span class="o">=</span> <span class="n">payload</span> <span class="o">+</span> <span class="s1">'.'</span> <span class="o">+</span> <span class="n">base64url_encode</span><span class="p">(</span><span class="n">signed</span><span class="p">)</span>
-
- <span class="c1"># #{environment + '.' } should be removed below when using production environments</span>
- <span class="n">files_url</span> <span class="o">=</span> <span class="s2">"https://api.</span><span class="si">#{</span><span class="n">environment</span> <span class="o">+</span> <span class="s1">'.'</span> <span class="si">}</span><span class="s2">ibmaspera.com/api/v1/oauth2/</span><span class="si">#{</span><span class="n">org</span><span class="si">}</span><span class="s2">/token"</span>
- <span class="n">parameters</span> <span class="o">=</span> <span class="s2">"assertion=</span><span class="si">#{</span><span class="n">jwt_token</span><span class="si">}</span><span class="s2">&amp;grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&amp;scope=</span><span class="si">#{</span><span class="n">scope</span><span class="si">}</span><span class="s2">"</span>
 </code></pre></div>    </div>
   </li>
   <li>
@@ -164,7 +160,11 @@
       <li>add the following to the bottom of <code class="highlighter-rouge">./get_analytics_data.rb</code></li>
     </ul>
 
-    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># setup Files request object</span>
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># "#{environment + '.' }" should be removed below when using production environments</span>
+ <span class="n">files_url</span> <span class="o">=</span> <span class="s2">"https://api.</span><span class="si">#{</span><span class="n">environment</span> <span class="o">+</span> <span class="s1">'.'</span> <span class="si">}</span><span class="s2">ibmaspera.com/api/v1/oauth2/</span><span class="si">#{</span><span class="n">org</span><span class="si">}</span><span class="s2">/token"</span>
+ <span class="n">parameters</span> <span class="o">=</span> <span class="s2">"assertion=</span><span class="si">#{</span><span class="n">jwt_token</span><span class="si">}</span><span class="s2">&amp;grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&amp;scope=</span><span class="si">#{</span><span class="n">scope</span><span class="si">}</span><span class="s2">"</span>
+
+ <span class="c1"># setup Files request object</span>
  <span class="n">client</span> <span class="o">=</span> <span class="no">RestClient</span><span class="o">::</span><span class="no">Resource</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
    <span class="n">files_url</span><span class="p">,</span>
    <span class="ss">user: </span><span class="n">client_id</span><span class="p">,</span>

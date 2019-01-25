@@ -98,10 +98,6 @@
     payload = base64url_encode(request_header.to_json) + '.' + base64url_encode(request_body.to_json)
     signed = private_key.sign(OpenSSL::Digest::SHA256.new, payload)
     jwt_token = payload + '.' + base64url_encode(signed)
-
-    # #{environment + '.' } should be removed below when using production environments
-    files_url = "https://api.#{environment + '.' }ibmaspera.com/api/v1/oauth2/#{org}/token"
-    parameters = "assertion=#{jwt_token}&grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&scope=#{scope}"
     ```
 
 1. Setup Files request object
@@ -109,6 +105,10 @@
     * add the following to the bottom of `./get_analytics_data.rb`
 
     ```ruby
+    # "#{environment + '.' }" should be removed below when using production environments
+    files_url = "https://api.#{environment + '.' }ibmaspera.com/api/v1/oauth2/#{org}/token"
+    parameters = "assertion=#{jwt_token}&grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&scope=#{scope}"
+
     # setup Files request object
     client = RestClient::Resource.new(
       files_url,
