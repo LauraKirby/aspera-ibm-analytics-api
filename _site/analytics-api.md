@@ -126,6 +126,14 @@
     pretty_print(result)
     ```
 
+1. Run script in terminal
+
+    ```bash
+    ruby get_analytics_data.rb
+    ```
+
+    * You should see the tokens printed in terminal as well as the Analytics API response.
+
 ## Additional resources
 
 * [Files JWT Authorization](https://developer.asperasoft.com/web/files/jwt-authorization)

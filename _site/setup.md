@@ -116,3 +116,5 @@ In this portion of the tutorial, we will work on obtaining the following pieces 
     <div class="demo-image">
      <img src="images/15-add-config-data.png"/>
     </div>
+
+1. Visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.

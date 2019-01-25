@@ -2,4 +2,4 @@
 
 Unofficial documentation for IBM Aspera's Files authorization and Analytics API.
 
-Vist: [API Implementation ](https://laurakirby.github.io/aspera-ibm-analytics-api/)
+Visit: [API Implementation ](https://laurakirby.github.io/aspera-ibm-analytics-api/)
