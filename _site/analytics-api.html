@@ -69,7 +69,11 @@
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Add the following to <code class="highlighter-rouge">./get_analytics_data.rb</code></p>
+    <p>Add hard-coded data and helper methods</p>
+
+    <ul>
+      <li>add the following to the bottom of <code class="highlighter-rouge">./get_analytics_data.rb</code></li>
+    </ul>
 
     <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># load secrets from config file</span>
  <span class="c1"># this file should be added to your .gitignore,</span>
@@ -100,7 +104,7 @@
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Specify values for the follow JWT header keys</p>
+    <p>Generate JWT: Specify values for the follow JWT header keys</p>
 
     <ul>
       <li>add the following to the bottom of <code class="highlighter-rouge">./get_analytics_data.rb</code></li>
@@ -114,7 +118,7 @@
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Specify values for the follow JWT body keys</p>
+    <p>Generate JWT: Specify values for the follow JWT body keys</p>
 
     <ul>
       <li>issuer (‘iss’): the client ID that is generated when you register an API client.</li>
@@ -137,7 +141,11 @@
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Construct the JWT</p>
+    <p>Generate JWT: Construction</p>
+
+    <ul>
+      <li>add the following to the bottom of <code class="highlighter-rouge">./get_analytics_data.rb</code></li>
+    </ul>
 
     <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># construct the hashed JWT</span>
  <span class="n">payload</span> <span class="o">=</span> <span class="n">base64url_encode</span><span class="p">(</span><span class="n">request_header</span><span class="p">.</span><span class="nf">to_json</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'.'</span> <span class="o">+</span> <span class="n">base64url_encode</span><span class="p">(</span><span class="n">request_body</span><span class="p">.</span><span class="nf">to_json</span><span class="p">)</span>
@@ -147,8 +155,16 @@
  <span class="c1"># #{environment + '.' } should be removed below when using production environments</span>
  <span class="n">files_url</span> <span class="o">=</span> <span class="s2">"https://api.</span><span class="si">#{</span><span class="n">environment</span> <span class="o">+</span> <span class="s1">'.'</span> <span class="si">}</span><span class="s2">ibmaspera.com/api/v1/oauth2/</span><span class="si">#{</span><span class="n">org</span><span class="si">}</span><span class="s2">/token"</span>
  <span class="n">parameters</span> <span class="o">=</span> <span class="s2">"assertion=</span><span class="si">#{</span><span class="n">jwt_token</span><span class="si">}</span><span class="s2">&amp;grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&amp;scope=</span><span class="si">#{</span><span class="n">scope</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Setup Files request object</p>
 
- <span class="c1"># setup Files request object</span>
+    <ul>
+      <li>add the following to the bottom of <code class="highlighter-rouge">./get_analytics_data.rb</code></li>
+    </ul>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># setup Files request object</span>
  <span class="n">client</span> <span class="o">=</span> <span class="no">RestClient</span><span class="o">::</span><span class="no">Resource</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
    <span class="n">files_url</span><span class="p">,</span>
    <span class="ss">user: </span><span class="n">client_id</span><span class="p">,</span>
@@ -159,8 +175,16 @@
  <span class="c1"># make request to Files API</span>
  <span class="n">result</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">client</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">parameters</span><span class="p">),</span> <span class="ss">symbolize_names: </span><span class="kp">true</span><span class="p">)</span>
  <span class="n">pretty_print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Extract ‘bearer token’ from Files response and make Analytics API request</p>
 
- <span class="c1"># extract 'bearer token'</span>
+    <ul>
+      <li>add the following to the bottom of <code class="highlighter-rouge">./get_analytics_data.rb</code></li>
+    </ul>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># extract 'bearer token'</span>
  <span class="n">bearer_token</span> <span class="o">=</span> <span class="s2">"Bearer </span><span class="si">#{</span><span class="n">result</span><span class="p">[</span><span class="ss">:access_token</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
 
  <span class="nb">puts</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">bearer_token: </span><span class="si">#{</span><span class="n">bearer_token</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">"</span>

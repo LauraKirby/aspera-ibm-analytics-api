@@ -23,7 +23,9 @@
     bundle
     ```
 
-1. Add the following to `./get_analytics_data.rb`
+1. Add hard-coded data and helper methods
+
+    * add the following to the bottom of `./get_analytics_data.rb`
 
     ```ruby
     # load secrets from config file
@@ -54,7 +56,7 @@
     time = Time.now.to_i
     ```
 
-1. Specify values for the follow JWT header keys
+1. Generate JWT: Specify values for the follow JWT header keys
 
     * add the following to the bottom of `./get_analytics_data.rb`
 
@@ -66,13 +68,14 @@
     }
     ```
 
-1. Specify values for the follow JWT body keys
+1. Generate JWT: Specify values for the follow JWT body keys
 
     * issuer ('iss'): the client ID that is generated when you register an API client.
     * subject ('sub'): the email address of the user who will use the bearer token for authentication.
     * audience ('aud'): is always the [Files API endpoint](https://api.asperafiles.com/api/v1/oauth2/token).
     * not before ('nbf'): a Unix timestamp when the bearer token becomes valid
     * expiration ('exp'): a Unix timestamp when the bearer token expires
+
 
     * add the following to the bottom of `./get_analytics_data.rb`
 
@@ -86,7 +89,9 @@
     }
     ```
 
-1. Construct the JWT
+1. Generate JWT: Construction
+
+    * add the following to the bottom of `./get_analytics_data.rb`
 
     ```ruby
     # construct the hashed JWT
@@ -97,7 +102,13 @@
     # #{environment + '.' } should be removed below when using production environments
     files_url = "https://api.#{environment + '.' }ibmaspera.com/api/v1/oauth2/#{org}/token"
     parameters = "assertion=#{jwt_token}&grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&scope=#{scope}"
+    ```
 
+1. Setup Files request object
+
+    * add the following to the bottom of `./get_analytics_data.rb`
+
+    ```ruby
     # setup Files request object
     client = RestClient::Resource.new(
       files_url,
@@ -109,7 +120,13 @@
     # make request to Files API
     result = JSON.parse(client.post(parameters), symbolize_names: true)
     pretty_print(result)
+    ```
 
+1. Extract 'bearer token' from Files response and make Analytics API request
+
+    * add the following to the bottom of `./get_analytics_data.rb`
+
+    ```ruby
     # extract 'bearer token'
     bearer_token = "Bearer #{result[:access_token]}"
 
