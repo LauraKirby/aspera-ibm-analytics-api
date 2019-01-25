@@ -1,26 +1,39 @@
 # Files Authorization & Analytics API
 
-1. Terminal
+> View the source code on Github: [get_analytics_data](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
+
+1. Terminal: Create files for Ruby script and dependencies.
 
     ```bash
+    # from project root directory
     touch get_analytics_data.rb Gemfile
     ```
 
-1. Copy and paste the following into `./Gemfile`
+1. Text editor: Add dependencies to `./Gemfile`
 
     ```ruby
     source 'https://rubygems.org'
 
     gem 'jwt'
     gem 'rest-client'
-    gem 'byebug'
     ```
 
-1. Install Gems, from terminal
+1. Terminal: Install dependencies (aka Gems)
 
     ```bash
     # from project root directory
     bundle
+    ```
+
+1. Add references to the installed dependencies and Ruby modules
+
+    * add the following to the top of `./get_analytics_data.rb`
+
+    ```ruby
+    require 'base64'
+    require 'json'
+    require 'restclient'
+    require 'yaml'
     ```
 
 1. Add hard-coded data and helper methods
@@ -106,7 +119,7 @@
 
     ```ruby
     # "#{environment + '.' }" should be removed below when using production environments
-    files_url = "https://api.#{environment + '.' }ibmaspera.com/api/v1/oauth2/#{org}/token"
+    files_url = "https://api.#{environment + '.' }ibmaspera.com/api/v1/oauth2/#{organization_name}/token"
     parameters = "assertion=#{jwt_token}&grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&scope=#{scope}"
 
     # setup Files request object
@@ -134,7 +147,7 @@
 
     # setup Analytics request object
     get_analytics = RestClient::Resource.new(
-      "https://api.qa.ibmaspera.com/analytics/v2/organizations/#{org_id}/volume_usage",
+      "https://api.qa.ibmaspera.com/analytics/v2/organizations/#{organization_id}/volume_usage",
       headers: { Authorization: bearer_token }
     )
 

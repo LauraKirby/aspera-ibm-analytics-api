@@ -1,6 +1,6 @@
 Unofficial documentation for accessing Aspera on Cloud ("AoC") application activity, transfer status and metadata, file access and volume usage.
 
-The following examples were created using a Mac (Linux).
+The following examples were created using a Mac (Linux) and Ruby 2.4.1.
 
 ## Dependencies
 

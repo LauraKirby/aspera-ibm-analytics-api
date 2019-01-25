@@ -95,13 +95,13 @@ In this portion of the tutorial, we will work on obtaining the following pieces 
      <img src="images/12-allow-gloabl-keys.png"/>
     </div>
 
-1. Add your public JWT (generated in step 3) to the field titled "Public Key (PEM Format)".
+1. Add your public JWT (generated in step 3) to the field titled "Public Key (PEM Format)". Click "Save".
 
     <div class="demo-image">
      <img src="images/13-copy-public-key.png"/>
     </div>
 
-1. Back in terminal, create an empty `.config.yml` file.
+1. In terminal, create an empty `.config.yml` file.
 
     ```bash
     touch config.yml
@@ -111,7 +111,7 @@ In this portion of the tutorial, we will work on obtaining the following pieces 
        <img src="images/14-create-empty-config.png"/>
      </div>
 
-1. Use the submenu to vist your integration "Profile". Use the keys that I have listed in the `config.yml` file; however, update the values with information that is specific to you.
+1. In AoC app, use the submenu to visit your integration "Profile". Use the keys that I have listed in the `config.yml` file; however, update the values with information that is specific to you.
 
     <div class="demo-image">
      <img src="images/15-add-config-data.png"/>

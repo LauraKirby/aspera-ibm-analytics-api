@@ -5,20 +5,18 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,maximum-scale=2">
-    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=fe772bc21305bb5daa0261831cbce08a6127ca74">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=0d35eec775d282051055bb4a17e1e91eec39e1cd">
 
 <!-- Begin Jekyll SEO tag v2.5.0 -->
 <title>Files Authorization &amp; Analytics API | IBM Aspera Analytics API</title>
 <meta name="generator" content="Jekyll v3.7.4" />
 <meta property="og:title" content="Files Authorization &amp; Analytics API" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Use Aspera IBM’s Analytics API to view Aspera on Cloud (“AoC”) application activity, transfer status and metadata, file access and volume usage." />
-<meta property="og:description" content="Use Aspera IBM’s Analytics API to view Aspera on Cloud (“AoC”) application activity, transfer status and metadata, file access and volume usage." />
 <link rel="canonical" href="http://localhost:4000/analytics-api.html" />
 <meta property="og:url" content="http://localhost:4000/analytics-api.html" />
 <meta property="og:site_name" content="IBM Aspera Analytics API" />
 <script type="application/ld+json">
-{"description":"Use Aspera IBM’s Analytics API to view Aspera on Cloud (“AoC”) application activity, transfer status and metadata, file access and volume usage.","@type":"WebPage","url":"http://localhost:4000/analytics-api.html","headline":"Files Authorization &amp; Analytics API","@context":"http://schema.org"}</script>
+{"@type":"WebPage","url":"http://localhost:4000/analytics-api.html","headline":"Files Authorization &amp; Analytics API","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -44,28 +42,45 @@
       <section id="main_content" class="inner">
         <h1 id="files-authorization--analytics-api">Files Authorization &amp; Analytics API</h1>
 
+<blockquote>
+  <p>View the source code on Github: <a href="https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo">get_analytics_data</a></p>
+</blockquote>
+
 <ol>
   <li>
-    <p>Terminal</p>
+    <p>Terminal: Create files for Ruby script and dependencies.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> touch get_analytics_data.rb Gemfile
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># from project root directory</span>
+ touch get_analytics_data.rb Gemfile
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Copy and paste the following into <code class="highlighter-rouge">./Gemfile</code></p>
+    <p>Text editor: Add dependencies to <code class="highlighter-rouge">./Gemfile</code></p>
 
     <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
 
  <span class="n">gem</span> <span class="s1">'jwt'</span>
  <span class="n">gem</span> <span class="s1">'rest-client'</span>
- <span class="n">gem</span> <span class="s1">'byebug'</span>
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Install Gems, from terminal</p>
+    <p>Terminal: Install dependencies (aka Gems)</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># from project root directory</span>
  bundle
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Add references to the installed dependencies and Ruby modules</p>
+
+    <ul>
+      <li>add the following to the top of <code class="highlighter-rouge">./get_analytics_data.rb</code></li>
+    </ul>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">require</span> <span class="s1">'base64'</span>
+ <span class="nb">require</span> <span class="s1">'json'</span>
+ <span class="nb">require</span> <span class="s1">'restclient'</span>
+ <span class="nb">require</span> <span class="s1">'yaml'</span>
 </code></pre></div>    </div>
   </li>
   <li>
@@ -161,7 +176,7 @@
     </ul>
 
     <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># "#{environment + '.' }" should be removed below when using production environments</span>
- <span class="n">files_url</span> <span class="o">=</span> <span class="s2">"https://api.</span><span class="si">#{</span><span class="n">environment</span> <span class="o">+</span> <span class="s1">'.'</span> <span class="si">}</span><span class="s2">ibmaspera.com/api/v1/oauth2/</span><span class="si">#{</span><span class="n">org</span><span class="si">}</span><span class="s2">/token"</span>
+ <span class="n">files_url</span> <span class="o">=</span> <span class="s2">"https://api.</span><span class="si">#{</span><span class="n">environment</span> <span class="o">+</span> <span class="s1">'.'</span> <span class="si">}</span><span class="s2">ibmaspera.com/api/v1/oauth2/</span><span class="si">#{</span><span class="n">organization_name</span><span class="si">}</span><span class="s2">/token"</span>
  <span class="n">parameters</span> <span class="o">=</span> <span class="s2">"assertion=</span><span class="si">#{</span><span class="n">jwt_token</span><span class="si">}</span><span class="s2">&amp;grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&amp;scope=</span><span class="si">#{</span><span class="n">scope</span><span class="si">}</span><span class="s2">"</span>
 
  <span class="c1"># setup Files request object</span>
@@ -191,7 +206,7 @@
 
  <span class="c1"># setup Analytics request object</span>
  <span class="n">get_analytics</span> <span class="o">=</span> <span class="no">RestClient</span><span class="o">::</span><span class="no">Resource</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
-   <span class="s2">"https://api.qa.ibmaspera.com/analytics/v2/organizations/</span><span class="si">#{</span><span class="n">org_id</span><span class="si">}</span><span class="s2">/volume_usage"</span><span class="p">,</span>
+   <span class="s2">"https://api.qa.ibmaspera.com/analytics/v2/organizations/</span><span class="si">#{</span><span class="n">organization_id</span><span class="si">}</span><span class="s2">/volume_usage"</span><span class="p">,</span>
    <span class="ss">headers: </span><span class="p">{</span> <span class="no">Authorization</span><span class="p">:</span> <span class="n">bearer_token</span> <span class="p">}</span>
  <span class="p">)</span>
 
