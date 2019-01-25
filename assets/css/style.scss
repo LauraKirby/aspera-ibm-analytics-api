@@ -1,0 +1,40 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+
+// code {
+//   background-color: #f8f8f8
+// }
+
+pre {
+  padding: 0.8rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  color: #567482;
+  word-wrap: normal;
+  background-color: #f3f6fa;
+  border: solid 1px #dce6f0;
+  border-radius: 0.3rem;
+  border: solid 1px #dce6f0;
+}
+
+
+code {
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #567482;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.highlight {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: #606c71;
+}
