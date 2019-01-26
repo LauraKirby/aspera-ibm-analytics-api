@@ -3,9 +3,11 @@ require 'yaml'
 require 'json'
 require 'base64'
 
-# load secrets from config file
-# this file should be added to your .gitignore,
-# it has been added here for purpose of demonstation
+# load secrets from config.yml file
+# config.yml, jwtRS256.key, jwtRS256.key.pub files
+# should be included in your.gitignore,
+# they have been been included in this repository for
+# purpose of demonstration
 yaml = YAML.load_file('config.yml')
 
 # helper methods
@@ -16,6 +18,15 @@ end
 def pretty_print(result)
   pretty = JSON.pretty_generate(result)
   puts pretty
+end
+
+def get_request(url_string, bearer_token, parameters = '')
+  request = RestClient::Resource.new(
+    url_string + parameters,
+    headers: { Authorization: bearer_token }
+  )
+
+  JSON.parse(request.get, symbolize_names: true)
 end
 
 # Load information about the Files instance being used
@@ -30,6 +41,7 @@ email = yaml['useremail']
 
 time = Time.now.to_i
 
+# ------ setup data for Files Authorization request -------
 # specify authentication type and hashing algorithm
 request_header = {
   typ: 'JWT',
@@ -62,20 +74,41 @@ client = RestClient::Resource.new(
 )
 
 # make request to Files API
-result = JSON.parse(client.post(parameters), symbolize_names: true)
-pretty_print(result)
+begin
+  puts "\n\n\nmake request to Files API\n\n\n"
+  result = JSON.parse(client.post(parameters), symbolize_names: true)
+  pretty_print(result)
+rescue Exception => e
+  puts e
+end
 
+# ------ setup data for Analytics request -------
 # extract 'bearer token'
+# we know that result[:access_token] holds a 'bearer token'
+# because result[:token_type] == 'bearer'
 bearer_token = "Bearer #{result[:access_token]}"
+analytics_url = "https://api.qa.ibmaspera.com/analytics/v2/organizations/#{organization_id}/transfers"
+start_time = CGI.escape('2019-01-19T23:00:00Z')
+stop_time = CGI.escape('2019-01-26T23:00:00Z')
+limit = 3
+parameters = "?start_time=#{start_time}&stop_time=#{stop_time}&limit=#{limit}"
 
-puts "\n\nbearer_token: #{bearer_token}\n\n"
+begin
+  puts "\n\n\nmake request to Analytics API"
+  puts "get page 1 of transfers\n\n\n"
+  result = get_request(analytics_url, bearer_token, parameters)
+  pretty_print(result)
+rescue Exception => e
+  puts e
+end
 
-# setup Analytics request object
-get_analytics = RestClient::Resource.new(
-  "https://api.qa.ibmaspera.com/analytics/v2/organizations/#{organization_id}/volume_usage",
-  headers: { Authorization: bearer_token }
-)
-
-# make request to Analytics API
-result = JSON.parse(get_analytics.get, symbolize_names: true)
-pretty_print(result)
+begin
+  puts "\n\n\nmake request to Analytics API"
+  puts "get page 2 of transfers\n\n\n"
+  result_two = get_request(result[:next][:href], bearer_token)
+  # note: result[:first][:href] will always provide
+  # the url to the very first page of transfers
+  pretty_print(result_two)
+rescue Exception => e
+  puts e
+end
