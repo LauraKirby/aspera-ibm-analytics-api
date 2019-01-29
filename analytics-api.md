@@ -164,6 +164,8 @@
 
     * You should see the tokens printed in terminal as well as the Analytics API response.
 
+1. View [source code on Github](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
+
 ## Additional resources
 
 * [Files JWT Authorization](https://developer.asperasoft.com/web/files/jwt-authorization)
