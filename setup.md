@@ -77,19 +77,19 @@ In this portion of the tutorial, we will work on obtaining the following pieces 
      <img src="images/9-jwt-landing.png"/>
     </div>
 
-1. Make the following selections to permit authentication (double check this, may not need to grant as much access).
+1. Select the check-box for "Enable JWT grant type".
 
     <div class="demo-image">
      <img src="images/10-jwt-selections.png"/>
     </div>
 
-1. Make the additional following selections to permit authentication (double check this, may not need to grant as much access).
+1. From the drop-down menu, select, "User-specific keys and global key".
 
     <div class="demo-image">
      <img src="images/11-jwt-selections-continued.png"/>
     </div>
 
-1. Confirm that you would like to permit global keys.
+1. Confirm that you would like to permit global keys. Click "Yes".
 
     <div class="demo-image">
      <img src="images/12-allow-gloabl-keys.png"/>
