@@ -1,12 +1,13 @@
 Unofficial documentation for accessing Aspera on Cloud ("AoC") application activity, transfer status and metadata, file access and volume usage.
 
-The following examples were created using a Mac (Linux) and Ruby 2.4.1.
-
 ## Dependencies
 
-* [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
+The following examples were created using a Mac (Linux) and Ruby 2.4.1. Note, copying the tokens used within this example will not work (they have been deactivated). You will need to generate tokens of your own.
+
+* Ruby 2.4.1
 * Ruby gem manager (eg [rvm](https://rvm.io/))
-* [Bundler](https://bundler.io/)
+* [Bundler 2.0.1](https://bundler.io/)
+  * Check to see if you have "Bundler" installed by running `bundler -v` in terminal.
 
 ## Getting Started
 
