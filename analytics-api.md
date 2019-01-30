@@ -2,16 +2,14 @@
 
 > View the source code on Github: [get_analytics_data](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
 
-1. Terminal: Create files for Ruby script and dependencies.
+1. Create files for Ruby script and dependencies:
 
     ```bash
     # from project root directory
     touch get_analytics_data.rb Gemfile
     ```
 
-1. Text editor: Add dependencies
-
-    * add the following to `./Gemfile`
+1. Add the following dependencies to the file `./Gemfile`:
 
     ```ruby
     source 'https://rubygems.org'
@@ -20,16 +18,14 @@
     gem 'rest-client'
     ```
 
-1. Terminal: Install dependencies (aka Gems)
+1. Install dependencies (Ruby gems):
 
     ```bash
     # from project root directory
     bundle
     ```
 
-1. Text editor: Add references to the installed dependencies and Ruby modules
-
-    * add the following to the top of `./get_analytics_data.rb`
+1. To add references to the installed dependencies and Ruby modules, add the following to the top of `./get_analytics_data.rb`:
 
     ```ruby
     require 'base64'
@@ -38,9 +34,7 @@
     require 'yaml'
     ```
 
-1. Text editor: Add hard-coded data and helper methods
-
-    * add the following to the bottom of `./get_analytics_data.rb`
+1. To add hard-coded data and helper methods, add the following to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     # load secrets from config.yml file
@@ -72,9 +66,9 @@
     time = Time.now.to_i
     ```
 
-1. Text editor: Generate JWT - Specify values for the follow JWT header keys
+1. Specify values for the follow JWT header keys.
 
-    * add the following to the bottom of `./get_analytics_data.rb`
+   Add the following to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     # specify authentication type and hashing algorithm
@@ -84,7 +78,7 @@
     }
     ```
 
-1. Text editor: Generate JWT - Specify values for the follow JWT body keys
+1. Generate and specify values for the follow JWT body keys:
 
     * issuer ('iss'): the client ID that is generated when you register an API client.
     * subject ('sub'): the email address of the user who will use the bearer token for authentication.
@@ -93,7 +87,7 @@
     * expiration ('exp'): a Unix timestamp when the bearer token expires
 
 
-    * add the following to the bottom of `./get_analytics_data.rb`
+   To do this, add the following to the bottom of `./get_analytics_data.rb` <!-- Does adding the below content actually "generate the JWTs and specify their values? -->
 
     ```ruby
     request_body = {
@@ -105,9 +99,9 @@
     }
     ```
 
-1. Text editor: Generate JWT & Request Parameters - Construction
+1. Generate JWT & Request Parameters - Construction <!-- what does "Construction" mean? -->
 
-    * add the following to the bottom of `./get_analytics_data.rb`
+   Add the following to the bottom of `./get_analytics_data.rb`
 
     ```ruby
     # construct the hashed JWT
@@ -122,9 +116,9 @@
     scope = CGI.escape('admin:all')
     ```
 
-1. Text editor: Setup Files request object
+1. Set up the Files request object. <!-- in the Files app? -->
 
-    * add the following to the bottom of `./get_analytics_data.rb`
+   Add the following to the bottom of `./get_analytics_data.rb`
 
     ```ruby
     # "#{environment + '.' }" should be removed below when using production environments
@@ -144,9 +138,7 @@
     pretty_print(result)
     ```
 
-1. Text editor: Extract 'bearer token' from Files response and setup request parameters
-
-    * add the following to the bottom of `./get_analytics_data.rb`
+1. To extract 'bearer token' from the Files response and set up request parameters, add the following to the bottom of `./get_analytics_data.rb:
 
     ```ruby
     # extract 'bearer token'
@@ -160,9 +152,7 @@
     parameters = "?start_time=#{start_time}&stop_time=#{stop_time}&limit=#{limit}"
     ```
 
-1. Text editor: Get page one of `/transfers` for specified parameters
-
-    * add the following to the bottom of `./get_analytics_data.rb`
+1. To get the first page <!-- does this mean the same thing as "page one"? I think it's more accurate --> of `/transfers` for specified parameters, add the following to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     request = RestClient::Resource.new(
@@ -176,9 +166,7 @@
     pretty_print(result)
     ```
 
-1. Text editor: Get page two of `./transfers` for specified parameters
-
-    * add the following to the bottom of `./get_analytics_data.rb`
+1. To get the second page of `./transfers` for specified parameters, add the following to the bottom of `./get_analytics_data.rb':
 
     ```ruby
     # link to page two of results is located at `result[:next][:href]`
@@ -194,13 +182,13 @@
     pretty_print(result_two)
     ```
 
-1. Terminal: Run script
+1. Run the following script to send your API requests:
 
     ```bash
     ruby get_analytics_data.rb
     ```
 
-    You should see the Files and Analytics API responses printed in terminal.
+    The Files and Activity API responses should new appear in terminal.
 
     * Files response
 
