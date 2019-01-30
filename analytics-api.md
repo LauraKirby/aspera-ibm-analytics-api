@@ -203,20 +203,192 @@
     You should see the Files and Analytics API responses printed in terminal.
 
     * Files response
-    <div class="demo-image">
-      <img src="images/18-files-response.png"/>
-    </div>
+
+    ```json
+    {
+          "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjIwMTgtMDYtMDZUMjI6MzU6MTQrMDA6MDAifQ.eyJ1c2VyX2lkIjoiNDE1MTEiLCJzY29wZSI6ImFkbWluOmFsbCIsImV4cGlyZXNfYXQiOiIyMDE5LTAxLTMwVDIzOjE5OjU1WiIsInV1aWQiOiIzOGNlNmRkNC03ZjQyLTQ0YTgtYmFkNi03YTY1ZTNlNjZlNjIiLCJvcmdhbml6YXRpb25faWQiOiIxMzM1NSIsImV4cCI6MTU0ODg5MDM5NSwic3ViIjoibGF1cmFraXJieTI2QGdtYWlsLmNvbSIsIm5hbWUiOiJMYXVyYSBLaXJieSIsImdpdmVuX25hbWUiOiJMYXVyYSIsImZhbWlseV9uYW1lIjoiS2lyYnkiLCJpYXQiOjE1NDg4MDM5OTUsImlzcyI6Imh0dHBzOi8vYXBpLmlibWFzcGVyYS5jb20vYXBpL3YxL29hdXRoMi90b2tlbiIsImlibWlkX2lkIjoiSUJNaWQtNTAzM1RLVFYyQiIsImlkIjoiYW9jLTQxNTExIiwicmVhbG1pZCI6ImFvYy1pYm1pZCIsImlkZW50aWZpZXIiOiI0MTUxMSJ9.wggzDE8xaNgc0ucOs8Tn0sCVwpvJSTVEGmqKeVq3uR0Ru7vkM5yptbFfSfbtg6kAKTzclL_I_rdznlSet20WMo_qb0b2mQiTIuhFLKL9uECoqCXxZ0LNdBpXbt1NxcMhMXIinfWc9PmQaGY6uAyjgOpNZDMBq3EzocHJ2YFUZjrURgrWgCWmDf7xlTcvziuwJ6XrFz8zeKBXRkdeow-wkkcaBM6-Q596GrFf7frQDOAmyRr1WIKZJ6j9V-jY-mrox-Rebsc0BW8sAXKb33TyZ_NHcuQu7n-_6hZ_QARqSIpqtbBEb6fZRY9aSQ8dQ4cdCtokKDjhVe1Kkt-aP1bLAg",
+          "token_type": "bearer",
+          "expires_in": 86399,
+          "scope": "admin:all"
+    }
+    ```
 
     * Analytics response for page 1
-    <div class="demo-image">
-      <img src="images/16-page-1-transfers-response.png"/>
-    </div>
+
+    ```json
+    {
+          "organization_id": 13355,
+          "start_time": "2019-01-19T23:00:00.000000000Z",
+          "stop_time": "2019-01-26T23:00:00.000000000Z",
+          "total_transfers": 5386,
+          "transfers": [
+                {
+                  "client_ip_address": "67.188.183.248",
+                  "direction": "receive",
+                  "error_code": 0,
+                  "error_message": "",
+                  "expected_bytes": 5242880,
+                  "file_count": 5,
+                  "file_id": 1133,
+                  "content": "1m1",
+                  "folder_count": 0,
+                  "num_source_paths": 5,
+                  "package_id": "non_package",
+                  "peer_error_code": 0,
+                  "peer_error_message": "",
+                  "server_ip_address": "169.55.186.92",
+                  "session_start_time": "2019-01-20T06:04:54.238000000Z",
+                  "session_stop_time": "2019-01-20T06:10:43.467000000Z",
+                  "status": "completed",
+                  "throughput": 3019061.0,
+                  "transferred_bytes": 5242880,
+                  "updated_at": "2019-01-20T06:10:43.467000000Z",
+                  "uuid": "86925705-b504-4460-b5fc-1223d1a1e1c9"
+                },
+                {
+                  "client_ip_address": "67.188.183.248",
+                  "direction": "receive",
+                  "error_code": 0,
+                  "error_message": "",
+                  "expected_bytes": 26214400,
+                  "file_count": 25,
+                  "file_id": 660041,
+                  "content": "Package with 25 files",
+                  "folder_count": 0,
+                  "num_source_paths": 25,
+                  "package_id": "BOn5y63kvw",
+                  "peer_error_code": 0,
+                  "peer_error_message": "",
+                  "server_ip_address": "169.55.186.92",
+                  "session_start_time": "2019-01-26T16:28:16.045000000Z",
+                  "session_stop_time": "2019-01-26T16:31:53.718000000Z",
+                  "status": "completed",
+                  "throughput": 953458.0,
+                  "transferred_bytes": 26214400,
+                  "updated_at": "2019-01-26T16:31:53.390000000Z",
+                  "uuid": "555c5b96-24c6-407f-996d-b0150f95615f"
+                },
+                {
+                  "client_ip_address": "209.206.68.131",
+                  "direction": "receive",
+                  "error_code": 0,
+                  "error_message": "",
+                  "expected_bytes": 1048576000,
+                  "file_count": 4,
+                  "file_id": 660007,
+                  "content": "weird",
+                  "folder_count": 0,
+                  "num_source_paths": 4,
+                  "package_id": "BOn3HOtrxg",
+                  "peer_error_code": 0,
+                  "peer_error_message": "",
+                  "server_ip_address": "169.55.186.92",
+                  "session_start_time": "2019-01-26T07:15:52.522000000Z",
+                  "session_stop_time": "2019-01-26T07:18:26.837000000Z",
+                  "status": "completed",
+                  "throughput": 75279695.0,
+                  "transferred_bytes": 1048576000,
+                  "updated_at": "2019-01-26T07:18:26.528000000Z",
+                  "uuid": "5b49ced9-b516-4a9b-b565-a3a92520dfb1"
+                }
+          ],
+          "first": {
+            "href": "https://api.qa.ibmaspera.com/analytics/v2/organizations/13355/transfers"
+          },
+          "next": {
+            "href": "https://api.qa.ibmaspera.com/analytics/v2/organizations/13355/transfers?start_time=2019-01-19T23:00:00Z&stop_time=2019-01-26T23:00:00Z&limit=3&next=16q0q4q0q0q52q43q0q0q6q52q95q50q48q49q57q0q35q0q8q21q125q84q173q216q110q192q184q16q91q73q206q217q181q22q74q155q181q101q163q169q37q32q223q177q7q114q101q99q101q105q118q101q240q127q255q255q249q240q127q255q255q253"
+          }
+    }
+    ```
 
 
     * Analytics response for page 2
-    <div class="demo-image">
-      <img src="images/17-page-2-transfers-response.png"/>
-    </div>
+
+    ```json
+    {
+          "organization_id": 13355,
+          "start_time": "2019-01-19T23:00:00.000000000Z",
+          "stop_time": "2019-01-26T23:00:00.000000000Z",
+          "total_transfers": 5386,
+          "transfers": [
+                {
+                  "client_ip_address": "67.188.183.248",
+                  "direction": "receive",
+                  "error_code": 0,
+                  "error_message": "",
+                  "expected_bytes": 5242880,
+                  "file_count": 5,
+                  "file_id": 1133,
+                  "content": "1m1",
+                  "folder_count": 0,
+                  "num_source_paths": 5,
+                  "package_id": "non_package",
+                  "peer_error_code": 0,
+                  "peer_error_message": "",
+                  "server_ip_address": "169.55.186.92",
+                  "session_start_time": "2019-01-20T06:04:54.238000000Z",
+                  "session_stop_time": "2019-01-20T06:10:43.467000000Z",
+                  "status": "completed",
+                  "throughput": 3019061.0,
+                  "transferred_bytes": 5242880,
+                  "updated_at": "2019-01-20T06:10:43.467000000Z",
+                  "uuid": "86925705-b504-4460-b5fc-1223d1a1e1c9"
+                },
+                {
+                  "client_ip_address": "67.188.183.248",
+                  "direction": "receive",
+                  "error_code": 0,
+                  "error_message": "",
+                  "expected_bytes": 26214400,
+                  "file_count": 25,
+                  "file_id": 660041,
+                  "content": "Package with 25 files",
+                  "folder_count": 0,
+                  "num_source_paths": 25,
+                  "package_id": "BOn5y63kvw",
+                  "peer_error_code": 0,
+                  "peer_error_message": "",
+                  "server_ip_address": "169.55.186.92",
+                  "session_start_time": "2019-01-26T16:28:16.045000000Z",
+                  "session_stop_time": "2019-01-26T16:31:53.718000000Z",
+                  "status": "completed",
+                  "throughput": 953458.0,
+                  "transferred_bytes": 26214400,
+                  "updated_at": "2019-01-26T16:31:53.390000000Z",
+                  "uuid": "555c5b96-24c6-407f-996d-b0150f95615f"
+                },
+                {
+                  "client_ip_address": "209.206.68.131",
+                  "direction": "receive",
+                  "error_code": 0,
+                  "error_message": "",
+                  "expected_bytes": 1048576000,
+                  "file_count": 4,
+                  "file_id": 660007,
+                  "content": "weird",
+                  "folder_count": 0,
+                  "num_source_paths": 4,
+                  "package_id": "BOn3HOtrxg",
+                  "peer_error_code": 0,
+                  "peer_error_message": "",
+                  "server_ip_address": "169.55.186.92",
+                  "session_start_time": "2019-01-26T07:15:52.522000000Z",
+                  "session_stop_time": "2019-01-26T07:18:26.837000000Z",
+                  "status": "completed",
+                  "throughput": 75279695.0,
+                  "transferred_bytes": 1048576000,
+                  "updated_at": "2019-01-26T07:18:26.528000000Z",
+                  "uuid": "5b49ced9-b516-4a9b-b565-a3a92520dfb1"
+                }
+          ],
+          "first": {
+            "href": "https://api.qa.ibmaspera.com/analytics/v2/organizations/13355/transfers"
+          },
+          "next": {
+            "href": "https://api.qa.ibmaspera.com/analytics/v2/organizations/13355/transfers?start_time=2019-01-19T23:00:00Z&stop_time=2019-01-26T23:00:00Z&limit=3&next=16q0q4q0q0q52q43q0q0q6q52q95q50q48q49q57q0q35q0q8q21q125q84q173q216q110q192q184q16q91q73q206q217q181q22q74q155q181q101q163q169q37q32q223q177q7q114q101q99q101q105q118q101q240q127q255q255q249q240q127q255q255q253"
+          }
+    }
+    ```
 
 1. Web Browser: View [source code on Github](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
 
