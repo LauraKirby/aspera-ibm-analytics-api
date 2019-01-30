@@ -378,7 +378,7 @@
     }
     ```
 
-1. Web Browser: View [source code on Github](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
+1. View [source code on Github](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
 
 ## Additional resources
 
