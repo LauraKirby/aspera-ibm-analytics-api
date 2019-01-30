@@ -31,7 +31,6 @@ end
 
 # Load information about the Files instance being used
 private_key = OpenSSL::PKey::RSA.new(File.read('jwtRS256.key'))
-scope = 'admin%3Aall'
 environment = yaml['environment']
 organization_name = yaml['organization_name']
 organization_id = yaml['organization_id']
@@ -56,14 +55,16 @@ request_body = {
   exp: time + 3600
 }
 
-# construct the hashed JWT
+# construct the hashed JWT and request parameters
 payload = base64url_encode(request_header.to_json) + '.' + base64url_encode(request_body.to_json)
 signed = private_key.sign(OpenSSL::Digest::SHA256.new, payload)
 jwt_token = payload + '.' + base64url_encode(signed)
+grant_type = CGI.escape('urn:ietf:params:oauth:grant-type:jwt-bearer')
+scope = CGI.escape('admin:all')
 
 # "#{environment + '.' }" should be removed below when using production environments
 files_url = "https://api.#{environment + '.' }ibmaspera.com/api/v1/oauth2/#{organization_name}/token"
-parameters = "assertion=#{jwt_token}&grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&scope=#{scope}"
+parameters = "assertion=#{jwt_token}&grant_type=#{grant_type}&scope=#{scope}"
 
 # setup Files request object
 client = RestClient::Resource.new(
