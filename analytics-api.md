@@ -25,7 +25,7 @@
     bundle
     ```
 
-1. Add references to the installed dependencies and Ruby modules
+1. Text editor: Add references to the installed dependencies and Ruby modules
 
     * add the following to the top of `./get_analytics_data.rb`
 
@@ -36,7 +36,7 @@
     require 'yaml'
     ```
 
-1. Add hard-coded data and helper methods
+1. Text editor: Add hard-coded data and helper methods
 
     * add the following to the bottom of `./get_analytics_data.rb`
 
@@ -58,15 +58,6 @@
       puts pretty
     end
 
-    def get_request(url_string, bearer_token, parameters = '')
-      request = RestClient::Resource.new(
-        url_string + parameters,
-        headers: { Authorization: bearer_token }
-      )
-
-      JSON.parse(request.get, symbolize_names: true)
-    end
-
     # Load information about the Files instance being used
     private_key = OpenSSL::PKey::RSA.new(File.read('jwtRS256.key'))
     environment = yaml['environment']
@@ -79,7 +70,7 @@
     time = Time.now.to_i
     ```
 
-1. Generate JWT: Specify values for the follow JWT header keys
+1. Text editor: Generate JWT - Specify values for the follow JWT header keys
 
     * add the following to the bottom of `./get_analytics_data.rb`
 
@@ -91,7 +82,7 @@
     }
     ```
 
-1. Generate JWT: Specify values for the follow JWT body keys
+1. Text editor: Generate JWT - Specify values for the follow JWT body keys
 
     * issuer ('iss'): the client ID that is generated when you register an API client.
     * subject ('sub'): the email address of the user who will use the bearer token for authentication.
@@ -112,7 +103,7 @@
     }
     ```
 
-1. Generate JWT & Request Parameters: Construction
+1. Text editor: Generate JWT & Request Parameters - Construction
 
     * add the following to the bottom of `./get_analytics_data.rb`
 
@@ -129,7 +120,7 @@
     scope = CGI.escape('admin:all')
     ```
 
-1. Setup Files request object
+1. Text editor: Setup Files request object
 
     * add the following to the bottom of `./get_analytics_data.rb`
 
@@ -151,7 +142,7 @@
     pretty_print(result)
     ```
 
-1. Extract 'bearer token' from Files response and make Analytics API request
+1. Text editor: Extract 'bearer token' from Files response and setup request parameters
 
     * add the following to the bottom of `./get_analytics_data.rb`
 
@@ -165,13 +156,43 @@
     stop_time = CGI.escape('2019-01-26T23:00:00Z')
     limit = 3
     parameters = "?start_time=#{start_time}&stop_time=#{stop_time}&limit=#{limit}"
+    ```
+
+1. Text editor: Get page one of `/transfers` for specified parameters
+
+    * add the following to the bottom of `./get_analytics_data.rb`
+
+    ```ruby
+    request = RestClient::Resource.new(
+      analytics_url + parameters,
+      headers: { Authorization: bearer_token }
+    )
 
     # make Analytics GET request
-    result = get_request(analytics_url, bearer_token, parameters)
+    # expect a max of 3 transfers to be returned, as specified by 'limit'
+    result = JSON.parse(request.get, symbolize_names: true)
     pretty_print(result)
     ```
 
-1. Run script in terminal
+1. Text editor: Get page two of `./transfers` for specified parameters
+
+    * add the following to the bottom of `./get_analytics_data.rb`
+
+    ```ruby
+    # link to page two of results is located at `result[:next][:href]`
+    analytics_url_two = result[:next][:href]
+    # note: result[:first][:href] will always provide the url to the very first page of transfers
+
+    request_two = RestClient::Resource.new(
+      analytics_url_two,
+      headers: { Authorization: bearer_token }
+    )
+
+    result_two = JSON.parse(request_two.get, symbolize_names: true)
+    pretty_print(result_two)
+    ```
+
+1. Terminal: Run script
 
     ```bash
     ruby get_analytics_data.rb
@@ -179,7 +200,7 @@
 
     * You should see the tokens printed in terminal as well as the Analytics API response.
 
-1. View [source code on Github](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
+1. Web Browser: View [source code on Github](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
 
 ## Additional resources
 

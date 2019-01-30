@@ -20,15 +20,6 @@ def pretty_print(result)
   puts pretty
 end
 
-def get_request(url_string, bearer_token, parameters = '')
-  request = RestClient::Resource.new(
-    url_string + parameters,
-    headers: { Authorization: bearer_token }
-  )
-
-  JSON.parse(request.get, symbolize_names: true)
-end
-
 # Load information about the Files instance being used
 private_key = OpenSSL::PKey::RSA.new(File.read('jwtRS256.key'))
 environment = yaml['environment']
@@ -94,21 +85,35 @@ stop_time = CGI.escape('2019-01-26T23:00:00Z')
 limit = 3
 parameters = "?start_time=#{start_time}&stop_time=#{stop_time}&limit=#{limit}"
 
+# get page 1 of transfers
+# expect a max of 3 transfers to be returned
 begin
-  puts "\n\n\nmake request to Analytics API"
-  puts "get page 1 of transfers\n\n\n"
-  result = get_request(analytics_url, bearer_token, parameters)
+  puts "\n\n\nGET Analytics ./transfers page 1\n\n\n"
+
+  request = RestClient::Resource.new(
+    analytics_url + parameters,
+    headers: { Authorization: bearer_token }
+  )
+
+  result = JSON.parse(request.get, symbolize_names: true)
   pretty_print(result)
 rescue Exception => e
   puts e
 end
 
+# get page 2 of transfers
 begin
-  puts "\n\n\nmake request to Analytics API"
-  puts "get page 2 of transfers\n\n\n"
-  result_two = get_request(result[:next][:href], bearer_token)
-  # note: result[:first][:href] will always provide
-  # the url to the very first page of transfers
+  puts "\n\n\nGET Analytics ./transfers page 2\n\n\n"
+  # link to page two of results is located at `result[:next][:href]`
+  analytics_url_two = result[:next][:href]
+  # note: result[:first][:href] will always provide the url to the very first page of transfers
+
+  request_two = RestClient::Resource.new(
+    analytics_url_two,
+    headers: { Authorization: bearer_token }
+  )
+
+  result_two = JSON.parse(request_two.get, symbolize_names: true)
   pretty_print(result_two)
 rescue Exception => e
   puts e
