@@ -1,6 +1,8 @@
 # Setup
 
-In this portion of the tutorial, we will work on obtaining the following pieces of information:
+You first need to configure your local system so you can make calls with the Activity API.
+
+This procedure lets you obtain the following pieces of information:
 
   * Client ID
   * Client Secret
