@@ -27,7 +27,7 @@ This procedure lets you obtain the following pieces of information:
     ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
     ```
 
-    * when prompted, press enter twice to greate a key without a passphrase.
+    * when prompted, press enter twice to create a key without a passphrase.
 
      <div class="demo-image">
        <img src="images/2-generate-keys.png"/>
