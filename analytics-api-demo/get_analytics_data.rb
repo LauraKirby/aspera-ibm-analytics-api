@@ -88,7 +88,7 @@ parameters = "?start_time=#{start_time}&stop_time=#{stop_time}&limit=#{limit}"
 # get page 1 of transfers
 # expect a max of 3 transfers to be returned
 begin
-  puts "\n\n\nGET Analytics ./transfers page 1\n\n\n"
+  puts "\n\nGET Analytics ./transfers page 1\n\n"
 
   request = RestClient::Resource.new(
     analytics_url + parameters,
@@ -103,7 +103,7 @@ end
 
 # get page 2 of transfers
 begin
-  puts "\n\n\nGET Analytics ./transfers page 2\n\n\n"
+  puts "\n\nGET Analytics ./transfers page 2\n\n"
   # link to page two of results is located at `result[:next][:href]`
   analytics_url_two = result[:next][:href]
   # note: result[:first][:href] will always provide the url to the very first page of transfers

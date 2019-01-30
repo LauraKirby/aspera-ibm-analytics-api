@@ -9,7 +9,9 @@
     touch get_analytics_data.rb Gemfile
     ```
 
-1. Text editor: Add dependencies to `./Gemfile`
+1. Text editor: Add dependencies
+
+    * add the following to `./Gemfile`
 
     ```ruby
     source 'https://rubygems.org'
@@ -198,7 +200,23 @@
     ruby get_analytics_data.rb
     ```
 
-    * You should see the tokens printed in terminal as well as the Analytics API response.
+    You should see the Files and Analytics API responses printed in terminal.
+
+    * Files response
+    <div class="demo-image">
+      <img src="images/18-files-response.png"/>
+    </div>
+
+    * Analytics response for page 1
+    <div class="demo-image">
+      <img src="images/16-page-1-transfers-response.png"/>
+    </div>
+
+
+    * Analytics response for page 2
+    <div class="demo-image">
+      <img src="images/17-page-2-transfers-response.png"/>
+    </div>
 
 1. Web Browser: View [source code on Github](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
 
