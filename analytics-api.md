@@ -201,7 +201,7 @@
     }
     ```
 
-    * Analytics response for page 1
+    * Activity response for page 1
 
     ```json
     {
@@ -290,7 +290,7 @@
     ```
 
 
-    * Analytics response for page 2
+    * Activity response for page 2
 
     ```json
     {
