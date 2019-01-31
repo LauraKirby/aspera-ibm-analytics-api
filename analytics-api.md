@@ -2,6 +2,8 @@
 
 > View the source code on Github: [get_analytics_data](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
 
+<!-- Nice to have an intro/context-setting to describing throughout the procedure. -->
+
 1. Create files to support the Ruby script and dependencies:
 
     ```bash
