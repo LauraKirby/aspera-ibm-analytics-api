@@ -13,6 +13,4 @@ The following examples were created using a Mac (Linux) and Ruby 2.4.1. Note, co
 
 [1. System and Application Setup](./setup.md)
 
-[3. Ruby Dependencies](./ruby_dependencies.md)
-
 [2. Obtain Files Application Authentication and Make Request to the Analytics API](./analytics-api.md)
