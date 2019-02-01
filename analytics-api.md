@@ -68,9 +68,7 @@
     time = Time.now.to_i
     ```
 
-1. Specify values for the follow JWT header keys.
-
-   Add the following to the bottom of `./get_analytics_data.rb`:
+1. To specify values for the follow JWT header keys, add the following to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     # specify authentication type and hashing algorithm
@@ -80,7 +78,7 @@
     }
     ```
 
-1. Generate and specify values for the follow JWT body keys:
+1. Now you want to generate and specify values for the follow JWT body keys:
 
     * issuer ('iss'): the client ID that is generated when you register an API client.
     * subject ('sub'): the email address of the user who will use the bearer token for authentication.
@@ -89,7 +87,7 @@
     * expiration ('exp'): a Unix timestamp when the bearer token expires
 
 
-   To do this, add the following to the bottom of `./get_analytics_data.rb` <!-- Does adding the below content actually "generate the JWTs and specify their values? -->
+   To generate the keys and specify their values, add the following to the bottom of `./get_analytics_data.rb` <!-- Does adding the below content actually "generate the JWTs and specify their values? -->
 
     ```ruby
     request_body = {
@@ -101,9 +99,7 @@
     }
     ```
 
-1. Generate JWT & Request Parameters - Construction <!-- what does "Construction" mean? -->
-
-   Add the following to the bottom of `./get_analytics_data.rb`
+1. To generate JWT & Request Parameters - Construction <!-- what does "Construction" mean? -->, add the following to the bottom of `./get_analytics_data.rb':
 
     ```ruby
     # construct the hashed JWT
@@ -118,9 +114,7 @@
     scope = CGI.escape('admin:all')
     ```
 
-1. Set up the Files request object. <!-- in the Files app? -->
-
-   Add the following to the bottom of `./get_analytics_data.rb`
+1. To set up the Files request object, add the following to the bottom of `./get_analytics_data.rb`
 
     ```ruby
     # "#{environment + '.' }" should be removed below when using production environments
@@ -184,13 +178,13 @@
     pretty_print(result_two)
     ```
 
-1. Run the following script to send your API requests:
+1. To send your API requests, run the following script:
 
     ```bash
     ruby get_analytics_data.rb
     ```
 
-    The Files and Activity API responses should new appear in terminal.
+    The Files and Activity API responses should now appear in terminal.
 
     * Files response
 
