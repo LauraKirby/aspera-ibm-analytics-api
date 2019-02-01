@@ -10,7 +10,7 @@ This procedure lets you obtain the following pieces of information:
   * JWT public
   * New AoC Integration
 
-1. For spimlicity purposes, all files that will be required for this demo will be stored in `analytics-api-demo` directory. Go ahead and create that directory now. In terminal, complete the following:
+1. For the purpose of simplicty, create an `analytics-api-demo` directory to hold all required files for this procedure. In terminal, run the following:
 
     ```bash
     mkdir analytics-api-demo
