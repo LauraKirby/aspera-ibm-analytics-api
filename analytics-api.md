@@ -2,7 +2,7 @@
 
 > View the source code on Github: [get_analytics_data](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
 
-We will set up the dependencies, make a request to the Files application to obtain authentication, and make authorized requests to the Analytics API. 
+We will set up the dependencies, make a request to the Files API to obtain authentication, and make authorized requests to the Analytics API. 
 
 1. Create files to support the Ruby script and dependencies:
 
@@ -99,7 +99,7 @@ We will set up the dependencies, make a request to the Files application to obta
     }
     ```
 
-1. To generate JWT & Request Parameters - Construction <!-- what does "Construction" mean? -->, add the following to the bottom of `./get_analytics_data.rb':
+1. To construct the JWT & Request Parameters, add the following to the bottom of `./get_analytics_data.rb':
 
     ```ruby
     # construct the hashed JWT
@@ -114,7 +114,7 @@ We will set up the dependencies, make a request to the Files application to obta
     scope = CGI.escape('admin:all')
     ```
 
-1. To set up the Files request object, add the following to the bottom of `./get_analytics_data.rb`
+1. To set up the authentication request to the Files API, add the following to the bottom of `./get_analytics_data.rb`
 
     ```ruby
     # "#{environment + '.' }" should be removed below when using production environments
