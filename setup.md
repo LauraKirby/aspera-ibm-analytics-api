@@ -11,7 +11,7 @@ There are two main procedures:
 
 ## I. Obtain the necessary elements for authorization 
 
-1. For the purpose of simplicty, create an `analytics-api-demo` directory to hold all the required files for this procedure. In terminal, run the following:
+1. For the purpose of simplicity, create an `analytics-api-demo` directory to hold all the required files for this procedure. In terminal, run the following:
 
     ```bash
     mkdir analytics-api-demo
@@ -31,6 +31,8 @@ There are two main procedures:
      </div>
 
     You should see the keys in the newly created files.
+    
+    The image below displays the expected output and an example key.
 
     <div class="demo-image">
      <img src="images/3-preview-private-key.png"/>
@@ -48,7 +50,7 @@ There are two main procedures:
 
 ## II. Prepare an integration with AoC 
 
-1. In the "Admin" app of AoC, create a new "Integration"
+1. In the "Admin" application of AoC, create a new "Integration"
 
     <div class="demo-image">
      <img src="images/5-integrations-create-new.png"/>
@@ -60,7 +62,7 @@ There are two main procedures:
      <img src="images/6-new-form.png"/>
     </div>
 
-1. Fill out form, for the purpose of the Analytics API, the "Redirect URIs" and "Orgins" can be any value. Click "Save".
+1. Fill out form, for the purpose of the Analytics API, the "Redirect URIs" and "Origins" can be any value. Click "Save".
 
     <div class="demo-image">
      <img src="images/7-new-form-filled-out.png"/>
@@ -112,12 +114,10 @@ There are two main procedures:
        <img src="images/14-create-empty-config.png"/>
      </div>
 
-1. In AoC app, use the submenu to visit your integration "Profile". Use the keys that I have listed in the `config.yml` file; however, update the values with information that is specific to you.
+1. In the AoC application, use the submenu to visit your integration "Profile". Use the keys that I have listed in the `config.yml` file; however, update the values with information that is specific to you.
 
     <div class="demo-image">
      <img src="images/15-add-config-data.png"/>
     </div>
 
 1. Visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
-
-## III. Install any necessary dependencies
