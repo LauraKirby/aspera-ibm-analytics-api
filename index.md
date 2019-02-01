@@ -11,7 +11,8 @@ The following examples were created using a Mac (Linux) and Ruby 2.4.1. Note, co
 
 ## Getting Started
 
-[1. Integration & Authorization Setup](./setup.md)
+[1. System and Application Setup](./setup.md)
 
-[2. Files Authorization & Analytics Requests](./analytics-api.md)
+[3. Ruby Dependencies](./ruby_dependencies.md)
 
+[2. Obtain Files Application Authentication and Make Request to the Analytics API](./analytics-api.md)
