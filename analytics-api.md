@@ -133,6 +133,24 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     result = JSON.parse(client.post(parameters), symbolize_names: true)
     pretty_print(result)
     ```
+1. To check that the setup works, run the following:
+
+    ```bash
+    ruby get_analytics_data.rb
+    ```
+
+    The Files API response should print in terminal.
+
+    * Files response
+
+    ```json
+    {
+          "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjIwMTgtMDYtMDZUMjI6MzU6MTQrMDA6MDAifQ.eyJ1c2VyX2lkIjoiNDE1MTEiLCJzY29wZSI6ImFkbWluOmFsbCIsImV4cGlyZXNfYXQiOiIyMDE5LTAxLTMwVDIzOjE5OjU1WiIsInV1aWQiOiIzOGNlNmRkNC03ZjQyLTQ0YTgtYmFkNi03YTY1ZTNlNjZlNjIiLCJvcmdhbml6YXRpb25faWQiOiIxMzM1NSIsImV4cCI6MTU0ODg5MDM5NSwic3ViIjoibGF1cmFraXJieTI2QGdtYWlsLmNvbSIsIm5hbWUiOiJMYXVyYSBLaXJieSIsImdpdmVuX25hbWUiOiJMYXVyYSIsImZhbWlseV9uYW1lIjoiS2lyYnkiLCJpYXQiOjE1NDg4MDM5OTUsImlzcyI6Imh0dHBzOi8vYXBpLmlibWFzcGVyYS5jb20vYXBpL3YxL29hdXRoMi90b2tlbiIsImlibWlkX2lkIjoiSUJNaWQtNTAzM1RLVFYyQiIsImlkIjoiYW9jLTQxNTExIiwicmVhbG1pZCI6ImFvYy1pYm1pZCIsImlkZW50aWZpZXIiOiI0MTUxMSJ9.wggzDE8xaNgc0ucOs8Tn0sCVwpvJSTVEGmqKeVq3uR0Ru7vkM5yptbFfSfbtg6kAKTzclL_I_rdznlSet20WMo_qb0b2mQiTIuhFLKL9uECoqCXxZ0LNdBpXbt1NxcMhMXIinfWc9PmQaGY6uAyjgOpNZDMBq3EzocHJ2YFUZjrURgrWgCWmDf7xlTcvziuwJ6XrFz8zeKBXRkdeow-wkkcaBM6-Q596GrFf7frQDOAmyRr1WIKZJ6j9V-jY-mrox-Rebsc0BW8sAXKb33TyZ_NHcuQu7n-_6hZ_QARqSIpqtbBEb6fZRY9aSQ8dQ4cdCtokKDjhVe1Kkt-aP1bLAg",
+          "token_type": "bearer",
+          "expires_in": 86399,
+          "scope": "admin:all"
+    }
+    ```
 
 1. To extract 'bearer token' from the Files response and set up request parameters, add the following to the bottom of `./get_analytics_data.rb:
 
@@ -178,24 +196,13 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     pretty_print(result_two)
     ```
 
-1. To send your API requests, run the following script:
+1. To check that the setup works, run the following:
 
     ```bash
     ruby get_analytics_data.rb
     ```
 
-    The Files and Activity API responses should now appear in terminal.
-
-    * Files response
-
-    ```json
-    {
-          "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjIwMTgtMDYtMDZUMjI6MzU6MTQrMDA6MDAifQ.eyJ1c2VyX2lkIjoiNDE1MTEiLCJzY29wZSI6ImFkbWluOmFsbCIsImV4cGlyZXNfYXQiOiIyMDE5LTAxLTMwVDIzOjE5OjU1WiIsInV1aWQiOiIzOGNlNmRkNC03ZjQyLTQ0YTgtYmFkNi03YTY1ZTNlNjZlNjIiLCJvcmdhbml6YXRpb25faWQiOiIxMzM1NSIsImV4cCI6MTU0ODg5MDM5NSwic3ViIjoibGF1cmFraXJieTI2QGdtYWlsLmNvbSIsIm5hbWUiOiJMYXVyYSBLaXJieSIsImdpdmVuX25hbWUiOiJMYXVyYSIsImZhbWlseV9uYW1lIjoiS2lyYnkiLCJpYXQiOjE1NDg4MDM5OTUsImlzcyI6Imh0dHBzOi8vYXBpLmlibWFzcGVyYS5jb20vYXBpL3YxL29hdXRoMi90b2tlbiIsImlibWlkX2lkIjoiSUJNaWQtNTAzM1RLVFYyQiIsImlkIjoiYW9jLTQxNTExIiwicmVhbG1pZCI6ImFvYy1pYm1pZCIsImlkZW50aWZpZXIiOiI0MTUxMSJ9.wggzDE8xaNgc0ucOs8Tn0sCVwpvJSTVEGmqKeVq3uR0Ru7vkM5yptbFfSfbtg6kAKTzclL_I_rdznlSet20WMo_qb0b2mQiTIuhFLKL9uECoqCXxZ0LNdBpXbt1NxcMhMXIinfWc9PmQaGY6uAyjgOpNZDMBq3EzocHJ2YFUZjrURgrWgCWmDf7xlTcvziuwJ6XrFz8zeKBXRkdeow-wkkcaBM6-Q596GrFf7frQDOAmyRr1WIKZJ6j9V-jY-mrox-Rebsc0BW8sAXKb33TyZ_NHcuQu7n-_6hZ_QARqSIpqtbBEb6fZRY9aSQ8dQ4cdCtokKDjhVe1Kkt-aP1bLAg",
-          "token_type": "bearer",
-          "expires_in": 86399,
-          "scope": "admin:all"
-    }
-    ```
+    The Activity API responses should print in terminal.
 
     * Activity response for page 1
 
