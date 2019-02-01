@@ -1,39 +1,36 @@
-# Setup
+# System and Application Setup
 
-You first need to configure your local system so you can make calls with the Activity API.
+This page take you through the necessary setup to prepare your local system and Aspera on Cloud (AoC) so that you can make API calls to the Activity app.
 
-This procedure lets you obtain the following pieces of information:
+There are two main procedures: 
 
-  * Client ID
-  * Client Secret
-  * JWT private
-  * JWT public
-  * New AoC Integration
+  > I. Obtain the necessary elements for authorization 
+  
+  > II. Prepare an integration with AoC 
+ 
 
-1. For the purpose of simplicty, create an `analytics-api-demo` directory to hold all required files for this procedure. In terminal, run the following:
+## I. Obtain the necessary elements for authorization 
+
+1. For the purpose of simplicty, create an `analytics-api-demo` directory to hold all the required files for this procedure. In terminal, run the following:
 
     ```bash
     mkdir analytics-api-demo
     cd analytics-api-demo
     ```
 
-    <div class="demo-image">
-     <img src="images/1-create-demo-directory.png"/>
-    </div>
-
-1. Generate private and public keys
+1. To generate private and public keys, run the following:
 
     ```bash
     ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
     ```
 
-    * when prompted, press enter twice to create a key without a passphrase.
+    When prompted, press enter twice to create a key without a passphrase.
 
      <div class="demo-image">
        <img src="images/2-generate-keys.png"/>
      </div>
 
-1. You should see the keys in the newly created files.
+    You should see the keys in the newly created files.
 
     <div class="demo-image">
      <img src="images/3-preview-private-key.png"/>
@@ -48,6 +45,8 @@ This procedure lets you obtain the following pieces of information:
      <div class="demo-image">
        <img src="images/4-configure-jwt-for-openssl.png"/>
      </div>
+
+## II. Prepare an integration with AoC 
 
 1. In the "Admin" app of AoC, create a new "Integration"
 
@@ -120,3 +119,5 @@ This procedure lets you obtain the following pieces of information:
     </div>
 
 1. Visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
+
+## III. Install any necessary dependencies
