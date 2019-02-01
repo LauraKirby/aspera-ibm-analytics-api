@@ -1,8 +1,8 @@
-# Files Authorization & Analytics API
+# Obtain Files Application Authentication & Make Request to the Analytics API
 
 > View the source code on Github: [get_analytics_data](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
 
-<!-- Nice to have an intro/context-setting to describing throughout the procedure. -->
+We will set up the dependencies, make a request to the Files application to obtain authentication, and make authorized requests to the Analytics API. 
 
 1. Create files to support the Ruby script and dependencies:
 
