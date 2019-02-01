@@ -152,7 +152,7 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     }
     ```
 
-1. To extract 'bearer token' from the Files response and set up request parameters, add the following to the bottom of `./get_analytics_data.rb:
+1. To extract bearer token from the Files response and set up request parameters, add the following to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     # extract 'bearer token'
