@@ -6,12 +6,12 @@ There are two main procedures:
 
   > I. Obtain the necessary elements for authorization 
   
-  > II. Prepare an integration with AoC 
+  > II. Configure an integration with AoC 
  
 
 ## I. Obtain the necessary elements for authorization 
 
-1. For the purpose of simplicity, create an `analytics-api-demo` directory to hold all the required files for this procedure. In terminal, run the following:
+1. Create a directory with a useful name, such as `analytics-api-demo`, to hold all the required files for this procedure. In terminal, run the following:
 
     ```bash
     mkdir analytics-api-demo
@@ -24,21 +24,23 @@ There are two main procedures:
     ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
     ```
 
-    When prompted, press enter twice to create a key without a passphrase.
+    At the prompt, press Enter twice to create a key without a passphrase.
 
      <div class="demo-image">
        <img src="images/2-generate-keys.png"/>
      </div>
 
-    You should see the keys in the newly created files.
+    If the process is successful, your new directory `analytics-api-demo` contains two key files, one private (`.key`) and one public (`.key.public`).
     
-    The image below displays the expected output and an example key.
+    The image below displays the expected terminal output and an example private key.
 
     <div class="demo-image">
      <img src="images/3-preview-private-key.png"/>
     </div>
 
-1. Configure the public key for openssl
+   Note that for all subsequent processes in terminal, you need to be in the directory created above.
+   
+1. Configure the public key to work with OpenSSL.
 
     ```bash
     openssl rsa -in jwtRS256.key -pubout -outform PEM -out jwtRS256.key.pub
@@ -50,61 +52,54 @@ There are two main procedures:
 
 ## II. Prepare an integration with AoC 
 
-1. In the "Admin" application of AoC, create a new "Integration"
+1. Create a new integration with Aspera on Cloud.
 
+   Click the dropdown next to the **Organization** menu category and click **Integrations**. Click **Create New**.
     <div class="demo-image">
      <img src="images/5-integrations-create-new.png"/>
     </div>
 
-1. Here is what the "new" form will look like
 
-    <div class="demo-image">
-     <img src="images/6-new-form.png"/>
-    </div>
+1. Enter a name for your integration.
 
-1. Fill out form, for the purpose of the Analytics API, the "Redirect URIs" and "Origins" can be any value. Click "Save".
+   Next, enter values for the "Redirect URIs" and "Origins", which for the purposes of the Activity API can be any value. Press Enter to confirm each one.  After you confirm the value, it appears under a **Name** header.
 
     <div class="demo-image">
      <img src="images/7-new-form-filled-out.png"/>
     </div>
+    
+   When done, click **Save**.
 
-1. You should now be looking at your newly created Integration's "Profile".
+   You now see a newly created **Profile** for your integration.
 
     <div class="demo-image">
      <img src="images/8-profile-details.png"/>
     </div>
 
-1. Click on the submenu "JSON Web Token Auth".
+1. Click the submenu **JSON Web Token Auth** (next to **Profile**).
 
-    <div class="demo-image">
-     <img src="images/9-jwt-landing.png"/>
-    </div>
-
-1. Select the check-box for "Enable JWT grant type".
-
-    <div class="demo-image">
-     <img src="images/10-jwt-selections.png"/>
-    </div>
-
-1. From the drop-down menu, select, "User-specific keys and global key".
+1. Select the check-box for *Enable JWT grant type*.
+1. From the *Allowed keys* dropdown, select, "User-specific keys and global key". 
 
     <div class="demo-image">
      <img src="images/11-jwt-selections-continued.png"/>
     </div>
 
-1. Confirm that you would like to permit global keys. Click "Yes".
+1. In the popup that appears, click **Yes** to confirm that you want to permit global keys.
 
     <div class="demo-image">
      <img src="images/12-allow-gloabl-keys.png"/>
     </div>
 
-1. Add your public JWT (generated in step 3) to the field titled "Public Key (PEM Format)". Click "Save".
+1. A field called **Public Key (PEM Format)** now appears. Enter the key value in `analytics-api-demo/*.key.public` (which you created in step 3). 
 
     <div class="demo-image">
      <img src="images/13-copy-public-key.png"/>
     </div>
 
-1. In terminal, create an empty `.config.yml` file.
+1. Click **Save**.
+
+1. In terminal, create an empty `.config.yml` file:
 
     ```bash
     touch config.yml
@@ -114,10 +109,39 @@ There are two main procedures:
        <img src="images/14-create-empty-config.png"/>
      </div>
 
-1. In the AoC application, use the submenu to visit your integration "Profile". Use the keys that I have listed in the `config.yml` file; however, update the values with information that is specific to you.
+1. Add content to `config.yml`.
 
-    <div class="demo-image">
+In the AoC Admin application, open your integration profile: click the **Organization** menu category and click **Integrations**, then click the name of the integration you created. 
+
+ <div class="demo-image">
      <img src="images/15-add-config-data.png"/>
     </div>
+    
+Some of the values you need to enter in `config.yml` can be found on this **Profile** page. (These values are noted in the table below.)
+
+Enter key:value pairs in the file, in the format below; replace the example values with values that are specific to your organization.
+
+```environment: ra
+client_id: *your_client_id*
+client_secret: *client_secret*
+useremail: myemailn@us.company.com
+organization_id: 13330
+organization_name: spire
+```
+
+Where to find the values for `config.yml`
+| `environment`| The first element in your organization's URL |
+| --- | --- |
+| `client_id` | Found in the "Client info" section on the *Integrations > Profile* page |
+  --- |  ---
+| `client_secret` | Found in the "Client info" section on the *Integrations > Profile* page |
+| --- | --- |
+| `useremail` | Your email address |
+  --- |  ---
+| `organization_id` | The ID for you organization in Aspera on Cloud |
+| --- | --- |
+| `organization_name` | The subdomain in your organization's URL |
+
+  
 
 1. Visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
