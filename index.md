@@ -2,7 +2,7 @@ Unofficial documentation for accessing Aspera on Cloud ("AoC") application activ
 
 ## Dependencies
 
-The following examples were created using a Mac (Linux) and Ruby 2.4.1. Note, copying the tokens used within this example will not work (they have been deactivated). You will need to generate tokens of your own.
+The following examples were created using a Mac and Ruby 2.4.1. Note, copying the tokens used within this example will not work (they have been deactivated). You will need to generate tokens of your own.
 
 * Ruby 2.4.1
 * Ruby gem manager (eg [rvm](https://rvm.io/))
