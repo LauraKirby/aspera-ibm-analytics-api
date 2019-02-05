@@ -128,7 +128,7 @@ There are two main procedures:
    organization_id: 13330
    organization_name: spire```
 
- *Where to find the values for `config.yml`:*
+ **Where to find the values for `config.yml`:**
 
 | Key | Value |
 | --- | --- |
