@@ -128,7 +128,7 @@ There are two main procedures:
    organization_id: 13330
    organization_name: spire```
 
-   Where to find the values for `config.yml`
+ *Where to find the values for `config.yml`:*
 
 | Key | Value |
 | --- | --- |
@@ -139,4 +139,4 @@ There are two main procedures:
 | `organization_id` | The ID for your organization in Aspera on Cloud |
 | `organization_name` | The subdomain in your organization's URL |
 
-1. Visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
+Now that you have completed the setup process, visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
