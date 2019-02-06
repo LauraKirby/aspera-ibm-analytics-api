@@ -19,7 +19,7 @@ There are three main procedures:
 
 ## I. Install Dependencies
 
-1. To add dependencies to `Gemfile`, copy the code below and add it to the file.
+1. To specify dependencies that should be installed, add the following to `Gemfile`.
 
     ```ruby
     source 'https://rubygems.org'
@@ -46,7 +46,7 @@ There are three main procedures:
     require './constants.rb'
     ```
 
-1. To add helper methods, for printing and encoding data add this code to the bottom of `./authentication.rb`:
+1. To include helper methods, for printing and encoding data, add this code to the bottom of `./authentication.rb`:
 
     ```ruby
     # helper methods
@@ -153,7 +153,7 @@ There are three main procedures:
 
 ## III. Make Analytics API Request
 
-1. To add required dependencies, add the following code to the bottom of `./get_analytics_data.rb`.
+1. To include required dependencies, add the following code to the bottom of `./get_analytics_data.rb`.
 
     ```ruby
     # --------------------------------------
