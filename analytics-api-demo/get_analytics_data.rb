@@ -1,20 +1,22 @@
+# --------------------------------------
+# Step 1: include dependencies
+# --------------------------------------
 require 'restclient'
 require 'json'
 require 'base64'
-require 'byebug'
 require './authentication.rb'
 require './constants.rb'
 
 include Authentication
 
 # --------------------------------------
-# Step 1: get authorization
+# Step 2: get authorization
 # --------------------------------------
 # use Authentication module to obtain bearer token
 @bearer_token = log_in
 
 # --------------------------------------
-# Step 2: get page 1 of transfers
+# Step 3: get page 1 of transfers
 # --------------------------------------
 
 def generate_request_url

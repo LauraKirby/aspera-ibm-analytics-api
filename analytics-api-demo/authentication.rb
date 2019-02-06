@@ -1,7 +1,8 @@
-# Note: config.yml, jwtRS256.key, jwtRS256.key.pub files
-# should be included in your.gitignore,
-# they have been been included in this repository for
-# purpose of demonstration
+# Note: files with secrets such as
+# constants.rb, jwtRS256.key, jwtRS256.key.pub files
+# should be included in your .gitignore. They have been
+# included in this repository for purpose of demonstration
+# Keys listed within this tutorial are not valid.
 
 require 'restclient'
 require 'json'
@@ -24,14 +25,14 @@ module Authentication
     private_key = OpenSSL::PKey::RSA.new(File.read('jwtRS256.key'))
     time = Time.now.to_i
 
-    # ------ setup data for Files Authorization request -------
     # specify authentication type and hashing algorithm
-    request_header = {
+    jwt_header = {
       typ: 'JWT',
       alg: 'RS256'
     }
 
-    request_body = {
+    # construct the hashed JWT and Files API request parameters
+    jwt_body = {
       iss: CLIENT_ID,
       sub: USER_EMAIL,
       aud: 'https://api.asperafiles.com/api/v1/oauth2/token',
@@ -39,8 +40,8 @@ module Authentication
       exp: time + 3600
     }
 
-    # construct the hashed JWT and request parameters
-    payload = base64url_encode(request_header.to_json) + '.' + base64url_encode(request_body.to_json)
+    # construct the hashed JWT and Files API request parameters
+    payload = base64url_encode(jwt_header.to_json) + '.' + base64url_encode(jwt_body.to_json)
     signed = private_key.sign(OpenSSL::Digest::SHA256.new, payload)
     jwt_token = payload + '.' + base64url_encode(signed)
     grant_type = CGI.escape('urn:ietf:params:oauth:grant-type:jwt-bearer')
@@ -72,10 +73,7 @@ module Authentication
       puts e
     end
 
-    # ------ setup data for Analytics request -------
-    # extract 'bearer token'
-    # we know that result[:access_token] holds a 'bearer token'
-    # because result[:token_type] == 'bearer'
+    # extract and return 'bearer token'
     return "Bearer #{result[:access_token]}" if result
   end
 end
