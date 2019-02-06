@@ -4,15 +4,12 @@
 # purpose of demonstration
 
 require 'restclient'
-require 'yaml'
 require 'json'
 require 'base64'
+require './constants.rb'
 
 # authorize Files API calls
 module Authentication
-  # Load information about the Files instance being used
-  @@yaml = YAML.load_file('config.yml')
-
   # helper methods
   def base64url_encode(str)
     Base64.encode64(str).tr('+/', '-_').gsub(/[\n=]/, '')
@@ -21,10 +18,6 @@ module Authentication
   def pretty_print(result)
     pretty = JSON.pretty_generate(result)
     puts pretty
-  end
-
-  def organization_id
-    @@yaml['organization_id']
   end
 
   def generate_auth_credentials
@@ -39,8 +32,8 @@ module Authentication
     }
 
     request_body = {
-      iss: @@yaml['client_id'],
-      sub: @@yaml['useremail'],
+      iss: CLIENT_ID,
+      sub: USER_EMAIL,
       aud: 'https://api.asperafiles.com/api/v1/oauth2/token',
       nbf: time - 3600,
       exp: time + 3600
@@ -58,15 +51,15 @@ module Authentication
 
   def log_in
     credentials = generate_auth_credentials
-    # "#{environment + '.' }" should be removed below when using production environments
-    files_url = "https://api.#{@@yaml['environment'] + '.' }ibmaspera.com/api/v1/oauth2/#{@@yaml['organization_name']}/token"
+    # "#{ENVIRONMENT}" should be removed below when using production environments
+    files_url = "https://api.#{ENVIRONMENT}ibmaspera.com/api/v1/oauth2/#{ORGANIZATION_NAME}/token"
     parameters = "assertion=#{credentials[:token]}&grant_type=#{credentials[:grant_type]}&scope=#{credentials[:scope]}"
 
     # setup Files request object
     client = RestClient::Resource.new(
       files_url,
-      user: @@yaml['client_id'],
-      password: @@yaml['client_secret'],
+      user: CLIENT_ID,
+      password: CLIENT_SECRET,
       headers: { content_type: 'application/x-www-form-urlencoded' }
     )
 
@@ -83,6 +76,6 @@ module Authentication
     # extract 'bearer token'
     # we know that result[:access_token] holds a 'bearer token'
     # because result[:token_type] == 'bearer'
-    "Bearer #{result[:access_token]}"
+    return "Bearer #{result[:access_token]}" if result
   end
 end

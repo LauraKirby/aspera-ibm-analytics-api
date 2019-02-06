@@ -1,12 +1,12 @@
 require 'restclient'
 require 'json'
 require 'byebug'
-
 require './authentication.rb'
+require './constants.rb'
 
 include Authentication
 # ------ get organization details -------
-files_url = "https://api.qa.ibmaspera.com/api/v1/organization"
+files_url = 'https://api.qa.ibmaspera.com/api/v1/organization'
 bearer_token = log_in
 
 begin
@@ -22,4 +22,3 @@ begin
 rescue Exception => e
   puts e
 end
-
