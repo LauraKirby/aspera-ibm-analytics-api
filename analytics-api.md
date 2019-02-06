@@ -10,7 +10,7 @@ There are three main procedures:
 
   > II. Obtain Bearer Token
 
-  > Make Analytics API Request
+  > III. Make Analytics API Request
 
 ## I. Install Dependencies
 
