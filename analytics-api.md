@@ -1,17 +1,19 @@
-# Obtain Files Application Authentication & Make Request to the Analytics API
+# Obtain Files API Authentication & Make a Test Request to the Analytics API
 
 > View the source code on Github: [get_analytics_data](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
 
 We will set up the dependencies, make a request to the Files API to obtain authentication, and make authorized requests to the Analytics API. 
 
-1. Create files to support the Ruby script and dependencies:
+Note that we use the Files API to configure the Aspera on Cloud platform, which includes the Activity application.
+
+1. To support the Ruby script and dependencies, create the file `get_analytics_data.rb` and a Gemfile.
 
     ```bash
     # from project root directory
     touch get_analytics_data.rb Gemfile
     ```
 
-1. Add the following dependencies to the file `./Gemfile`:
+1. To add dependencies to `Gemfile`, copy the code below and add it to the file.
 
     ```ruby
     source 'https://rubygems.org'
@@ -20,14 +22,14 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     gem 'rest-client'
     ```
 
-1. Install dependencies (Ruby gems):
+1. To install dependencies (Ruby gems), run the following in terminal:
 
     ```bash
     # from project root directory
     bundle
     ```
 
-1. To add references to the installed dependencies and Ruby modules, add the following to the top of `./get_analytics_data.rb`:
+1. To add references to the installed dependencies and Ruby modules, add the following to `./get_analytics_data.rb`. This code must remain at the top of the file.
 
     ```ruby
     require 'base64'
@@ -36,7 +38,7 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     require 'yaml'
     ```
 
-1. To add hard-coded data and helper methods, add the following to the bottom of `./get_analytics_data.rb`:
+1. To add hard-coded data and helper methods, add this code to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     # load secrets from config.yml file
@@ -68,7 +70,7 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     time = Time.now.to_i
     ```
 
-1. To specify values for the follow JWT header keys, add the following to the bottom of `./get_analytics_data.rb`:
+1. To specify values for the JWT header keys, add this code to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     # specify authentication type and hashing algorithm
@@ -78,16 +80,16 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     }
     ```
 
-1. Now you want to generate and specify values for the follow JWT body keys:
+1. Now you need to generate the following JWT body keys and specify their values:
 
-    * issuer ('iss'): the client ID that is generated when you register an API client.
-    * subject ('sub'): the email address of the user who will use the bearer token for authentication.
-    * audience ('aud'): is always the [Files API endpoint](https://api.asperafiles.com/api/v1/oauth2/token).
-    * not before ('nbf'): a Unix timestamp when the bearer token becomes valid
-    * expiration ('exp'): a Unix timestamp when the bearer token expires
+    * issuer ('iss'): Client ID that is generated when you register an API client.
+    * subject ('sub'): Email address of the user who will use the bearer token for authentication.
+    * audience ('aud'): Always https://api.asperafiles.com/api/v1/oauth2/token.
+    * not before ('nbf'): Unix timestamp for when the bearer token becomes valid
+    * expiration ('exp'): Unix timestamp for when the bearer token expires
 
 
-   To generate the keys and specify their values, add the following to the bottom of `./get_analytics_data.rb` <!-- Does adding the below content actually "generate the JWTs and specify their values? -->
+   Add the following to the bottom of `./get_analytics_data.rb` 
 
     ```ruby
     request_body = {
@@ -99,7 +101,7 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     }
     ```
 
-1. To construct the JWT and Request Parameters, add the following to the bottom of `./get_analytics_data.rb`:
+1. To construct the JSON web token (JWT) and its request parameters, add the following to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     # construct the hashed JWT
@@ -114,7 +116,7 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     scope = CGI.escape('admin:all')
     ```
 
-1. To set up the authentication request to the Files API, add the following to the bottom of `./get_analytics_data.rb`
+1. To set up the authentication request to the Files API, add the following code to the bottom of `./get_analytics_data.rb`
 
     ```ruby
     # "#{environment + '.' }" should be removed below when using production environments
@@ -133,7 +135,8 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     result = JSON.parse(client.post(parameters), symbolize_names: true)
     pretty_print(result)
     ```
-1. To check that the setup works, run the following:
+    
+1. To confirm that your setup is successful, run the Ruby script:
 
     ```bash
     ruby get_analytics_data.rb
@@ -152,7 +155,9 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     }
     ```
 
-1. To extract bearer token from the Files response and set up request parameters, add the following to the bottom of `./get_analytics_data.rb`:
+1. To extract the bearer token from the Files API response in the previous step and add request parameters, add the following code to the bottom of `./get_analytics_data.rb`. 
+
+   Note that the bearer token is the value of `access_token` in the Files API response.
 
     ```ruby
     # extract 'bearer token'
@@ -166,7 +171,7 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     parameters = "?start_time=#{start_time}&stop_time=#{stop_time}&limit=#{limit}"
     ```
 
-1. To get the first page <!-- does this mean the same thing as "page one"? I think it's more accurate --> of `/transfers` for specified parameters, add the following to the bottom of `./get_analytics_data.rb`:
+1. To get the first page of `/transfers` for the request, add the following to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     request = RestClient::Resource.new(
@@ -180,7 +185,7 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     pretty_print(result)
     ```
 
-1. To get the second page of `./transfers` for specified parameters, add the following to the bottom of `./get_analytics_data.rb`:
+1. To get the second page of `./transfers` for the request, add the following to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     # link to page two of results is located at `result[:next][:href]`
@@ -196,13 +201,13 @@ We will set up the dependencies, make a request to the Files API to obtain authe
     pretty_print(result_two)
     ```
 
-1. To check that the setup works, run the following:
+1. Now you're ready to make a call to the Activity API! To confirm that everything is working, run the Ruby script:
 
     ```bash
     ruby get_analytics_data.rb
     ```
 
-    The Activity API responses should print in terminal.
+   The response should print in terminal.
 
     * Activity response for page 1
 
