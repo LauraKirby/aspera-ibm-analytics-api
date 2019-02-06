@@ -2,16 +2,22 @@
 
 > View the source code on Github: [get_analytics_data](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
 
-We will set up the dependencies, make a request to the Files API to obtain authentication, and make authorized requests to the Analytics API. 
+We will set up the dependencies, make a request to the Files API to obtain authentication, and make authorized requests to the Analytics API.
 
 Note that we use the Files API to configure the Aspera on Cloud platform, which includes the Activity application.
 
-1. To support the Ruby script and dependencies, create the file `get_analytics_data.rb` and a Gemfile.
 
-    ```bash
-    # from project root directory
-    touch get_analytics_data.rb Gemfile
-    ```
+This page take you through the necessary setup to prepare your local system and Aspera on Cloud (AoC) so that you can make API calls to the Activity app.
+
+There are three main procedures:
+
+  > I. Install Dependencies
+
+  > II. Obtain Bearer Token
+
+  > Make Analytics API Request
+
+## I. Install Dependencies
 
 1. To add dependencies to `Gemfile`, copy the code below and add it to the file.
 
@@ -29,25 +35,20 @@ Note that we use the Files API to configure the Aspera on Cloud platform, which 
     bundle
     ```
 
-1. To add references to the installed dependencies and Ruby modules, add the following to `./get_analytics_data.rb`. This code must remain at the top of the file.
+## II. Obtain Bearer Token
+
+1. To add references to the installed dependencies and Ruby modules, add the following to `./authentication.rb`. This code must remain at the top of the file.
 
     ```ruby
-    require 'base64'
-    require 'json'
     require 'restclient'
-    require 'yaml'
+    require 'json'
+    require 'base64'
+    require './constants.rb'
     ```
 
-1. To add hard-coded data and helper methods, add this code to the bottom of `./get_analytics_data.rb`:
+1. To add helper methods, for printing and encoding data add this code to the bottom of `./authentication.rb`:
 
     ```ruby
-    # load secrets from config.yml file
-    # config.yml, jwtRS256.key, jwtRS256.key.pub files
-    # should be included in your.gitignore,
-    # they have been been included in this repository for
-    # purpose of demonstration
-    yaml = YAML.load_file('config.yml')
-
     # helper methods
     def base64url_encode(str)
       Base64.encode64(str).tr('+/', '-_').gsub(/[\n=]/, '')
@@ -57,30 +58,40 @@ Note that we use the Files API to configure the Aspera on Cloud platform, which 
       pretty = JSON.pretty_generate(result)
       puts pretty
     end
-
-    # Load information about the Files instance being used
-    private_key = OpenSSL::PKey::RSA.new(File.read('jwtRS256.key'))
-    environment = yaml['environment']
-    organization_name = yaml['organization_name']
-    organization_id = yaml['organization_id']
-    client_id = yaml['client_id']
-    client_secret = yaml['client_secret']
-    email = yaml['useremail']
-
-    time = Time.now.to_i
     ```
 
-1. To specify values for the JSON web token (JWT) header keys, add this code to the bottom of `./get_analytics_data.rb`:
+1. To specify values for the JSON web token (JWT) header keys, add this code to the bottom of `./authentication.rb`:
 
     ```ruby
-    # specify authentication type and hashing algorithm
-    request_header = {
-      typ: 'JWT',
-      alg: 'RS256'
-    }
-    ```
+    def generate_auth_credentials
+      private_key = OpenSSL::PKey::RSA.new(File.read('jwtRS256.key'))
+      time = Time.now.to_i
 
-1. Now you need to generate the following JWT body keys and specify their values:
+      # specify authentication type and hashing algorithm
+      jwt_header = {
+        typ: 'JWT',
+        alg: 'RS256'
+      }
+
+      # specify issuer, subject, audience, not before and expiration
+      jwt_body = {
+        iss: CLIENT_ID,
+        sub: USER_EMAIL,
+        aud: 'https://api.asperafiles.com/api/v1/oauth2/token',
+        nbf: time - 3600,
+        exp: time + 3600
+      }
+
+      # construct the hashed JWT and Files API request parameters
+      payload = base64url_encode(jwt_header.to_json) + '.' + base64url_encode(jwt_body.to_json)
+      signed = private_key.sign(OpenSSL::Digest::SHA256.new, payload)
+      jwt_token = payload + '.' + base64url_encode(signed)
+      grant_type = CGI.escape('urn:ietf:params:oauth:grant-type:jwt-bearer')
+      scope = CGI.escape('admin:all')
+
+      { token: jwt_token, grant_type: grant_type, scope: scope }
+    end
+    ```
 
     * issuer ('iss'): Client ID that is generated when you register an API client.
     * subject ('sub'): Email address of the user who will use the bearer token for authentication.
@@ -89,57 +100,42 @@ Note that we use the Files API to configure the Aspera on Cloud platform, which 
     * expiration ('exp'): Unix timestamp for when the bearer token expires
 
 
-   Add the following to the bottom of `./get_analytics_data.rb` 
+
+1. To set up the authentication request to the Files API, add the following code to the bottom of `./authentication.rb`:
 
     ```ruby
-    request_body = {
-      iss: client_id,
-      sub: email,
-      aud: 'https://api.asperafiles.com/api/v1/oauth2/token',
-      nbf: time - 3600,
-      exp: time + 3600
-    }
+    def log_in
+      credentials = generate_auth_credentials
+      # "#{ENVIRONMENT}" should be removed below when using production environments
+      files_url = "https://api.#{ENVIRONMENT}ibmaspera.com/api/v1/oauth2/#{ORGANIZATION_NAME}/token"
+      parameters = "assertion=#{credentials[:token]}&grant_type=#{credentials[:grant_type]}&scope=#{credentials[:scope]}"
+
+      # setup Files request object
+      client = RestClient::Resource.new(
+        files_url,
+        user: CLIENT_ID,
+        password: CLIENT_SECRET,
+        headers: { content_type: 'application/x-www-form-urlencoded' }
+      )
+
+      # make request to Files API
+      begin
+        puts "\n\n\nmake request to Files API\n\n\n"
+        result = JSON.parse(client.post(parameters), symbolize_names: true)
+        pretty_print(result)
+      rescue Exception => e
+        puts e
+      end
+
+      # extract and return 'bearer token'
+      return "Bearer #{result[:access_token]}" if result
+    end
     ```
 
-1. To construct the JWT and its request parameters, add the following to the bottom of `./get_analytics_data.rb`:
-
-    ```ruby
-    # construct the hashed JWT
-    payload = base64url_encode(request_header.to_json) + '.' + base64url_encode(request_body.to_json)
-    signed = private_key.sign(OpenSSL::Digest::SHA256.new, payload)
-    jwt_token = payload + '.' + base64url_encode(signed)
-
-    payload = base64url_encode(request_header.to_json) + '.' + base64url_encode(request_body.to_json)
-    signed = private_key.sign(OpenSSL::Digest::SHA256.new, payload)
-    jwt_token = payload + '.' + base64url_encode(signed)
-    grant_type = CGI.escape('urn:ietf:params:oauth:grant-type:jwt-bearer')
-    scope = CGI.escape('admin:all')
-    ```
-
-1. To set up the authentication request to the Files API, add the following code to the bottom of `./get_analytics_data.rb`
-
-    ```ruby
-    # "#{environment + '.' }" should be removed below when using production environments
-    files_url = "https://api.#{environment + '.' }ibmaspera.com/api/v1/oauth2/#{organization_name}/token"
-    parameters = "assertion=#{jwt_token}&grant_type=#{grant_type}&scope=#{scope}"
-
-    # setup Files request object
-    client = RestClient::Resource.new(
-      files_url,
-      user: client_id,
-      password: client_secret,
-      headers: { content_type: 'application/x-www-form-urlencoded' }
-    )
-
-    # make request to Files API
-    result = JSON.parse(client.post(parameters), symbolize_names: true)
-    pretty_print(result)
-    ```
-    
 1. To confirm that your setup is successful, run the Ruby script:
 
     ```bash
-    ruby get_analytics_data.rb
+    ruby authentication.rb
     ```
 
     The Files API response should print in terminal.
@@ -155,53 +151,109 @@ Note that we use the Files API to configure the Aspera on Cloud platform, which 
     }
     ```
 
-1. To extract the bearer token from the Files API response in the previous step and add request parameters, add the following code to the bottom of `./get_analytics_data.rb`. 
+## III. Make Analytics API Request
+
+1. To add required dependencies, add the following code to the bottom of `./get_analytics_data.rb`.
+
+    ```ruby
+    # --------------------------------------
+    # Step 1: include dependencies
+    # --------------------------------------
+    require 'restclient'
+    require 'json'
+    require 'base64'
+    require './authentication.rb'
+    require './constants.rb'
+
+    include Authentication
+    ```
+
+1. To extract the bearer token, call `log_in` from the `Authentication` module. Add the following code to the bottom of `./get_analytics_data.rb`.
 
    Note that the bearer token is the value of `access_token` in the Files API response.
 
     ```ruby
-    # extract 'bearer token'
-    # we know that result[:access_token] holds a 'bearer token'
-    # because result[:token_type] == 'bearer'
-    bearer_token = "Bearer #{result[:access_token]}"
-    analytics_url = "https://api.qa.ibmaspera.com/analytics/v2/organizations/#{organization_id}/transfers"
-    start_time = CGI.escape('2019-01-19T23:00:00Z')
-    stop_time = CGI.escape('2019-01-26T23:00:00Z')
-    limit = 3
-    parameters = "?start_time=#{start_time}&stop_time=#{stop_time}&limit=#{limit}"
+    # --------------------------------------
+    # Step 2: get authorization
+    # --------------------------------------
+    # use Authentication module to obtain bearer token
+    @bearer_token = log_in
     ```
 
 1. To get the first page of `/transfers` for the request, add the following to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
-    request = RestClient::Resource.new(
-      analytics_url + parameters,
-      headers: { Authorization: bearer_token }
-    )
+    # --------------------------------------
+    # Step 3: get page 1 of transfers
+    # --------------------------------------
 
-    # make Analytics GET request
-    # expect a max of 3 transfers to be returned, as specified by 'limit'
-    result = JSON.parse(request.get, symbolize_names: true)
-    pretty_print(result)
+    def generate_request_url
+      # analytics base url
+      analytics_url = "https://api.qa.ibmaspera.com/analytics/v2/organizations/#{ORGANIZATION_ID}/"
+      # resource within analytics application
+      analytics_resource = 'transfers'
+      # query parameters
+      start_time = CGI.escape('2019-01-19T23:00:00Z')
+      stop_time = CGI.escape('2019-01-26T23:00:00Z')
+      limit = 3
+      parameters = "?start_time=#{start_time}&stop_time=#{stop_time}&limit=#{limit}"
+      # print what the request url will look like
+      puts "\n\nanalytics_url: #{analytics_url + analytics_resource + parameters}"
+      analytics_url + analytics_resource + parameters
+    end
+
+    # given our query parameter `limit=3`,
+    # expect page one to have a max of 3 transfers returned.
+    begin
+      puts "\n\nGET Analytics ./transfers page 1\n\n"
+      request = RestClient::Resource.new(
+        generate_request_url,
+        headers: { Authorization: @bearer_token }
+      )
+
+      result = JSON.parse(request.get, symbolize_names: true)
+      pretty_print(result)
+    rescue Exception => e
+      puts e
+    end
     ```
 
 1. To get the second page of `./transfers` for the request, add the following to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
-    # link to page two of results is located at `result[:next][:href]`
-    analytics_url_two = result[:next][:href]
-    # note: result[:first][:href] will always provide the url to the very first page of transfers
+    # --------------------------------------
+    # Step 3: get page 2 of transfers
+    # --------------------------------------
 
-    request_two = RestClient::Resource.new(
-      analytics_url_two,
-      headers: { Authorization: bearer_token }
-    )
+    # given our query parameter `limit=3`,
+    # expect page two to have a max of 3 transfers returned.
+    begin
+      puts "\n\nGET Analytics ./transfers page 2\n\n"
+      # link to page two of results is located at `result[:next][:href]`
+      if result
+        # any query parameters from initial request will be automatically appended here.
+        # note: result[:first][:href] will always provide the url to the very first page of transfers.
+        analytics_url_two = result[:next][:href]
 
-    result_two = JSON.parse(request_two.get, symbolize_names: true)
-    pretty_print(result_two)
+        # print what the url will look like for page two of transfers
+        puts "page two url: #{analytics_url_two}"
+
+        request_two = RestClient::Resource.new(
+          analytics_url_two,
+          headers: { Authorization: @bearer_token }
+        )
+
+        result_two = JSON.parse(request_two.get, symbolize_names: true)
+        pretty_print(result_two)
+      else
+        puts "There was an error in your initial Activity request or result[:next][:href] doesn't exist on this endpoint"
+      end
+    rescue Exception => e
+      puts e
+    end
     ```
 
-1. Now you're ready to make a call to the Activity API! To confirm that everything is working, run the Ruby script:
+1. Now you're ready to make Activity API GET requests! To confirm that everything is working, run the Ruby script:
 
     ```bash
     ruby get_analytics_data.rb
