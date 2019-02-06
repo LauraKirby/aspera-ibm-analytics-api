@@ -70,7 +70,7 @@ Note that we use the Files API to configure the Aspera on Cloud platform, which 
     time = Time.now.to_i
     ```
 
-1. To specify values for the JWT header keys, add this code to the bottom of `./get_analytics_data.rb`:
+1. To specify values for the JSON web token (JWT) header keys, add this code to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     # specify authentication type and hashing algorithm
@@ -101,7 +101,7 @@ Note that we use the Files API to configure the Aspera on Cloud platform, which 
     }
     ```
 
-1. To construct the JSON web token (JWT) and its request parameters, add the following to the bottom of `./get_analytics_data.rb`:
+1. To construct the JWT and its request parameters, add the following to the bottom of `./get_analytics_data.rb`:
 
     ```ruby
     # construct the hashed JWT
