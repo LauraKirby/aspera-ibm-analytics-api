@@ -27,11 +27,9 @@ There are two main procedures:
     ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
     ```
 
-    At the prompt, press Enter twice to create a key without a passphrase.
-
-     <div class="demo-image">
-       <img src="images/2-generate-keys.png"/>
-     </div>
+    A prompt, `Enter passphrase (empty for no passphrase)` appears.
+    
+    To create a key without a passphrase, press Enter twice.
 
     If the process is successful, your new directory `analytics-api-demo` contains two key files, one private (`.key`) and one public (`.key.public`).
 
@@ -53,10 +51,10 @@ There are two main procedures:
        <img src="images/4-configure-jwt-for-openssl.png"/>
      </div>
 
-## II. Prepare an integration with AoC
+## II. Create an integration with AoC
 
-1. Create a new integration with Aspera on Cloud.
-
+1. Go to *.ibmaspera.com (* indicates the subdomain for your organization in Aspera on Cloud). 
+   
    Click the dropdown next to the **Organization** menu category and click **Integrations**. Click **Create New**.
     <div class="demo-image">
      <img src="images/5-integrations-create-new.png"/>
