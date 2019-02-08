@@ -118,14 +118,14 @@ There are two main procedures:
        <img src="images/15-add-config-data.png"/>
       </div>
 
-  **Where to find the values:**
+    **Where to find the values:**
 
-  | Key | Value |
-  | --- | --- |
-  | `CLIENT_ID` | Found in the "Client info" section on the *Integrations > Profile* page |
-  | `CLIENT_SECRET` | Found in the "Client info" section on the *Integrations > Profile* page |
-  | `USER_EMAIL` | Your email address |
-  | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization id, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
-  | `ORGANIZATION_NAME` | The subdomain in your organization's URL |
+    | Key | Value |
+    | --- | --- |
+    | `CLIENT_ID` | Found in the "Client info" section on the *Integrations > Profile* page |
+    | `CLIENT_SECRET` | Found in the "Client info" section on the *Integrations > Profile* page |
+    | `USER_EMAIL` | Your email address |
+    | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization id, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
+    | `ORGANIZATION_NAME` | The subdomain in your organization's URL |
 
 Now that you have completed the setup process, visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
