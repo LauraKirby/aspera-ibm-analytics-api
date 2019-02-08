@@ -100,6 +100,8 @@ There are two main procedures:
 
 1. Click **Save**.
 
+   Keep this page open.
+
 1. In terminal, create an empty `.config.yml` file:
 
     ```bash
@@ -110,34 +112,30 @@ There are two main procedures:
        <img src="images/14-create-empty-config.png"/>
      </div>
 
-1. Add content to `config.yml`.
+1. Add key:value pairs to `config.yml`.
 
-   In the AoC Admin application, open your integration profile: click the **Organization** menu category and click **Integrations**, then click the name of the integration you created.
+   You should now have the Profile page for your integration open, as well as the terminal.
 
    <div class="demo-image">
        <img src="images/15-add-config-data.png"/>
       </div>
 
-   Some of the values you need to enter in `config.yml` can be found on this **Profile** page. (These values are noted in the table below.)
-
-   Enter key:value pairs in the file, as in the example below. Replace the example values with values that are specific to your organization.
-
-   ```environment: rad
-   client_id: your_client_id
-   client_secret: client_secret
-   useremail: myemailn@us.company.com
-   organization_id: 13330
-   organization_name: spire```
-
- **Where to find the values for `config.yml`:**
+**Where to find the values:**
 
 | Key | Value |
 | --- | --- |
-| `environment`| The first element in your organization's URL |
 | `client_id` | Found in the "Client info" section on the *Integrations > Profile* page |
 | `client_secret` | Found in the "Client info" section on the *Integrations > Profile* page |
-| `useremail` | Your email address |
+| `user_email` | Your email address |
 | `organization_id` | The ID for your organization in Aspera on Cloud. If you do not know your organization id, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
 | `organization_name` | The subdomain in your organization's URL |
+
+   Enter key:value pairs in the file, as in the example below. Replace the example values with values that are specific to your organization.
+
+   ```client_id: BnMcc56a8OIij
+   client_secret: CrMcc56a8OIifF-lw&RsfO87-Uyss7I9
+   useremail: my.name@company.com
+   organization_id: 13330
+   organization_name: turbo
 
 Now that you have completed the setup process, visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
