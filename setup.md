@@ -53,8 +53,8 @@ There are two main procedures:
 
 ## II. Create an integration with AoC
 
-1. Go to *.ibmaspera.com (* indicates the subdomain for your organization in Aspera on Cloud). 
-   
+1. Go to `*.ibmaspera.com`, where `*` represetns your subdomain. Your subdomain will be unique to your organization in Aspera on Cloud. In this tutorial `turbo` is used as the subdomain. 
+
    Click the dropdown next to the **Organization** menu category and click **Integrations**. Click **Create New**.
     <div class="demo-image">
      <img src="images/5-integrations-create-new.png"/>
@@ -77,10 +77,10 @@ There are two main procedures:
      <img src="images/8-profile-details.png"/>
     </div>
 
-1. Click the submenu **JSON Web Token Auth** (next to **Profile**).
-
-1. Select the check-box for **Enable JWT grant type**.
-1. From the **Allowed keys** dropdown, select **User-specific keys and global key**.
+1. To update your integration setting to permit JWT authentication, complete the following: 
+    * Click the submenu **JSON Web Token Auth** (next to **Profile**).
+    * Select the check-box for **Enable JWT grant type**.
+    * From the **Allowed keys** dropdown, select **User-specific keys and global key**.
 
     <div class="demo-image">
      <img src="images/11-jwt-selections-continued.png"/>
