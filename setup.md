@@ -105,11 +105,11 @@ There are two main procedures:
 1. Add the constants (e.g. `ORGANIZATION_NAME` ) listed below; however, update the values with information that is specific to you (e.g. `'my-company-name'`). 
 
   
-   ```CLIENT_ID: BnMcc56a8OIij
-   CLIENT_SECRET: 'CrMcc56a8OIifF-lw&RsfO87-Uyss7I9'
-   USER_EMAIL: 'my.name@company.com'
-   ORGANIZATION_ID: 13330
-   ORGANIZATION_NAME: 'turbo'
+   ```CLIENT_ID = BNMWnBP3Rg
+   CLIENT_SECRET = 'RpRQHCCzLOMsFo7pyCegd2W58FxmWKep'
+   USER_EMAIL = 'laurakirby26@gmail.com'
+   ORGANIZATION_ID = 13355
+   ORGANIZATION_NAME = 'turbo'
    ```
 
    You will need to copy infromation from your integration Profile page. 
