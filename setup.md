@@ -106,10 +106,10 @@ There are two main procedures:
 
   
    ```CLIENT_ID: BnMcc56a8OIij
-   CLIENT_SECRET: CrMcc56a8OIifF-lw&RsfO87-Uyss7I9
-   USER_EMAIL: my.name@company.com
+   CLIENT_SECRET: 'CrMcc56a8OIifF-lw&RsfO87-Uyss7I9'
+   USER_EMAIL: 'my.name@company.com'
    ORGANIZATION_ID: 13330
-   ORGANIZATION_NAME: turbo
+   ORGANIZATION_NAME: 'turbo'
    ```
 
    You will need to copy infromation from your integration Profile page. 
