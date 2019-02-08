@@ -86,7 +86,7 @@ There are two main procedures:
      <img src="images/11-jwt-selections-continued.png"/>
     </div>
 
-1. In the popup that appears, click **Yes** to confirm that you want to permit global keys.
+1. In the pop-up that appears, click **Yes** to confirm that you want to permit global keys.
 
     <div class="demo-image">
      <img src="images/12-allow-gloabl-keys.png"/>
@@ -104,28 +104,28 @@ There are two main procedures:
 
 1. Add the constants (e.g. `ORGANIZATION_NAME` ) listed below; however, update the values with information that is specific to you (e.g. `'my-company-name'`). 
 
-   You should now have the Profile page for your integration open, as well as the terminal.
-
-   <div class="demo-image">
-       <img src="images/15-add-config-data.png"/>
-      </div>
-
-**Where to find the values:**
-
-| Key | Value |
-| --- | --- |
-| `CLIENT_ID` | Found in the "Client info" section on the *Integrations > Profile* page |
-| `CLIENT_SECRET` | Found in the "Client info" section on the *Integrations > Profile* page |
-| `USER_EMAIL` | Your email address |
-| `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization id, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
-| `ORGANIZATION_NAME` | The subdomain in your organization's URL |
-
-   Enter key:value pairs in the file, as in the example below. Replace the example values with values that are specific to your organization.
-
+  
    ```client_id: BnMcc56a8OIij
    client_secret: CrMcc56a8OIifF-lw&RsfO87-Uyss7I9
    useremail: my.name@company.com
    organization_id: 13330
    organization_name: turbo
+   ```
+
+   You will need to copy infromation from your integration Profile page. 
+   
+   <div class="demo-image">
+       <img src="images/15-add-config-data.png"/>
+      </div>
+
+  **Where to find the values:**
+
+  | Key | Value |
+  | --- | --- |
+  | `CLIENT_ID` | Found in the "Client info" section on the *Integrations > Profile* page |
+  | `CLIENT_SECRET` | Found in the "Client info" section on the *Integrations > Profile* page |
+  | `USER_EMAIL` | Your email address |
+  | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization id, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
+  | `ORGANIZATION_NAME` | The subdomain in your organization's URL |
 
 Now that you have completed the setup process, visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
