@@ -102,17 +102,7 @@ There are two main procedures:
 
    Keep this page open.
 
-1. In terminal, create an empty `.config.yml` file:
-
-    ```bash
-    touch config.yml
-    ```
-
-     <div class="demo-image">
-       <img src="images/14-create-empty-config.png"/>
-     </div>
-
-1. Add key:value pairs to `config.yml`.
+1. Add the constants (e.g. `ORGANIZATION_NAME` ) listed below; however, update the values with information that is specific to you (e.g. `'my-company-name'`). 
 
    You should now have the Profile page for your integration open, as well as the terminal.
 
@@ -124,11 +114,11 @@ There are two main procedures:
 
 | Key | Value |
 | --- | --- |
-| `client_id` | Found in the "Client info" section on the *Integrations > Profile* page |
-| `client_secret` | Found in the "Client info" section on the *Integrations > Profile* page |
-| `user_email` | Your email address |
-| `organization_id` | The ID for your organization in Aspera on Cloud. If you do not know your organization id, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
-| `organization_name` | The subdomain in your organization's URL |
+| `CLIENT_ID` | Found in the "Client info" section on the *Integrations > Profile* page |
+| `CLIENT_SECRET` | Found in the "Client info" section on the *Integrations > Profile* page |
+| `USER_EMAIL` | Your email address |
+| `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization id, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
+| `ORGANIZATION_NAME` | The subdomain in your organization's URL |
 
    Enter key:value pairs in the file, as in the example below. Replace the example values with values that are specific to your organization.
 
