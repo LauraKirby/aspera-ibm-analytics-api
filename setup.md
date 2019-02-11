@@ -24,7 +24,7 @@ You must be an admin user, and you must be added as a member in your Aspera on C
     cd analytics-api-demo
     touch get_analytics_data.rb authentication.rb get_organization.rb constants.rb Gemfile
     ```
-
+<!-- Jonathan Solomon: "authentication.rb doesn't return a token (as shown in the guide)" CB asks, where? -->
 1. Generate private and public keys:
 
     <!-- Don't know what this paragraph means: -->All files created containing security information such as the private and public keys should not be checked into git. They have been shown here and can be found in the source code for the purpose of demonstration. All keys shown are no longer valid.
@@ -58,6 +58,8 @@ You must be an admin user, and you must be added as a member in your Aspera on C
      </div>
 
 ## II. Create an integration with AoC
+
+<!-- Jonathan Solomon: remove "qa" from all sample URLs, including screenshots; it's confusing. -->
 
 1. Go to `*.ibmaspera.com`, where `*` represents your subdomain. Your subdomain will be unique to your organization in Aspera on Cloud. In this tutorial `turbo` is used as the subdomain. 
 
@@ -139,7 +141,7 @@ You must be an admin user, and you must be added as a member in your Aspera on C
     | `CLIENT_ID` | Found in the "Client info" section on the *Integrations > Profile* page |
     | `CLIENT_SECRET` | Found in the "Client info" section on the *Integrations > Profile* page |
     | `USER_EMAIL` | Your email address |
-    | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization id, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) **Note**: You may need to install byebug to make the call to the endpoint. <!-- Note from Jonathan Solomon -->|
+    | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization ID, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) **Note**: You may need to install byebug to make the call to the endpoint. <!-- Note from Jonathan Solomon -->|
     | `ORGANIZATION_NAME` | The subdomain in your organization's URL |
 
 Now that you have completed the setup process, visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
