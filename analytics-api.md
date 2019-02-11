@@ -41,14 +41,14 @@ There are three main procedures:
     require './constants.rb'
     ```
 
-1. To declare the Authenication module, add this code to the bottom of `./authentication.rb`:
+1. To declare the Authentication module, add this code to the bottom of `./authentication.rb`:
     ```ruby
     module Authentication
     # in the next few steps, we will be adding methods here. 
     end
     ```
 
-1. To include helper methods, for printing and encoding data, add this code inside of the `Authenication` module within `./authentication.rb`:
+1. To include helper methods, for printing and encoding data, add this code inside of the `Authentication` module within `./authentication.rb`:
 
     ```ruby
     # helper methods
@@ -62,7 +62,7 @@ There are three main procedures:
     end
     ```
 
-1. To specify values for the JSON web token (JWT) header keys, add this code inside of the `Authenication` module within  `./authentication.rb`:
+1. To specify values for the JSON web token (JWT) header keys, add this code inside of the `Authentication` module within  `./authentication.rb`:
 
     ```ruby
     def generate_auth_credentials
@@ -103,7 +103,7 @@ There are three main procedures:
 
 
 
-1. To set up the authentication request to the Files API, add this code inside of the `Authenication` module within `./authentication.rb`:
+1. To set up the authentication request to the Files API, add this code inside of the `Authentication` module within `./authentication.rb`:
 
     ```ruby
     def log_in
