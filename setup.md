@@ -21,7 +21,7 @@ There are two main procedures:
 
 1. Generate private and public keys:
 
-    All files created containing security information such as the private and public keys should not be checked into git. They have been shown here and can be found in the source code for the purpose of demonstration. All keys shown are no longer valid.
+    <!-- Don't know what this paragraph means: -->All files created containing security information such as the private and public keys should not be checked into git. They have been shown here and can be found in the source code for the purpose of demonstration. All keys shown are no longer valid.
 
     ```bash
     ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
@@ -53,7 +53,7 @@ There are two main procedures:
 
 ## II. Create an integration with AoC
 
-1. Go to `*.ibmaspera.com`, where `*` represetns your subdomain. Your subdomain will be unique to your organization in Aspera on Cloud. In this tutorial `turbo` is used as the subdomain. 
+1. Go to `*.ibmaspera.com`, where `*` represents your subdomain. Your subdomain will be unique to your organization in Aspera on Cloud. In this tutorial `turbo` is used as the subdomain. 
 
    Click the dropdown next to the **Organization** menu category and click **Integrations**. Click **Create New**.
     <div class="demo-image">
@@ -63,7 +63,7 @@ There are two main procedures:
 
 1. Enter a name for your integration.
 
-   Next, enter values for the **Redirect URIs** and **Origins**, which for the purposes of the Activity API can be any value. Press Enter to confirm each one.  After you confirm the value, it appears under a **Name** header.
+   Next, enter values for the **Redirect URIs** and **Origins**. A redirect URI redirects from your domain to a different URL.and the origin is a combination of a specific hostname, protocol, and port on your site, which can be shared by multiple URLs. <!-- Get better examples for this. What does this mean?: "which for the purposes of the Activity API can be any value." --> Press Enter to confirm each one.  After you confirm the value, it appears under a **Name** header.
 
     <div class="demo-image">
      <img src="images/7-new-form-filled-out.png"/>
@@ -86,23 +86,23 @@ There are two main procedures:
      <img src="images/11-jwt-selections-continued.png"/>
     </div>
 
-1. In the pop-up that appears, click **Yes** to confirm that you want to permit global keys.
+    In the pop-up that appears, click **Yes** to confirm that you want to permit global keys.
 
     <div class="demo-image">
      <img src="images/12-allow-gloabl-keys.png"/>
     </div>
 
-1. A field called **Public Key (PEM Format)** now appears. Enter the key found in `analytics-api-demo/*.key.public` (which you created in step 3).
-
+    A field called **Public Key (PEM Format)** now appears. Copy the key found in `analytics-api-demo/*.key.public` (which you created in step 3). Include the text, `-----BEGIN PUBLIC KEY------`` and -----END PUBLIC KEY------`.
+ 
     <div class="demo-image">
      <img src="images/13-copy-public-key.png"/>
     </div>
 
-1. Click **Save**.
+   Click **Save**.
 
    Keep this page open.
 
-1. Add the constants (e.g. `ORGANIZATION_NAME` ) listed below; however, update the values with information that is specific to you (e.g. `'my-company-name'`). 
+1. <!-- We're missing something here - did the "touch config.yml" step get deleted? --> Add the constants (e.g. `ORGANIZATION_NAME` ) listed below; however, update the values with information that is specific to you (e.g. `'my-company-name'`). 
 
   
    ```CLIENT_ID = BNMWnBP3Rg
@@ -112,7 +112,7 @@ There are two main procedures:
    ORGANIZATION_NAME = 'turbo'
    ```
 
-   You will need to copy infromation from your integration Profile page. 
+   You will need to copy information from your integration's Profile page. 
    
    <div class="demo-image">
        <img src="images/15-add-config-data.png"/>
