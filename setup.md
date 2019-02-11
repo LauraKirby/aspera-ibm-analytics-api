@@ -1,6 +1,6 @@
 # System and Application Setup
 
-This page take you through the necessary setup to prepare your local system and Aspera on Cloud (AoC) so that you can make API calls to the Activity app.
+This tutorial takes you through the necessary setup to prepare your local system and Aspera on Cloud (AoC) so that you can make API calls to the Activity app.
 
 There are two main procedures:
 
@@ -8,6 +8,12 @@ There are two main procedures:
 
   > II. Configure an integration with AoC
 
+**Prerequisite:**
+You must be an admin user, and you must be added as a member in your Aspera on Cloud (AoC) organization. 
+1. To confirm that you are a member, open the Admin app in AoC. 
+1. In the left navigation menu, click **Users**. 
+1. Look for your name in the list on the Users page.
+1. If your name is not there, click **Create new**, then enter your email address and click **Save**.
 
 ## I. Obtain the necessary elements for authorization
 
@@ -55,15 +61,23 @@ There are two main procedures:
 
 1. Go to `*.ibmaspera.com`, where `*` represents your subdomain. Your subdomain will be unique to your organization in Aspera on Cloud. In this tutorial `turbo` is used as the subdomain. 
 
-   Click the dropdown next to the **Organization** menu category and click **Integrations**. Click **Create New**.
-    <div class="demo-image">
+<div class="demo-image">
      <img src="images/5-integrations-create-new.png"/>
     </div>
 
+   Click the dropdown next to the **Organization** menu category and click **Integrations**. Click **Create New**.
+    
+   An new integration form opens.
+   
+<div class="demo-image">
+     <img src="images/6-new-form.png"/>
+    </div>
+    
+1. Fill out the form with appropriate values for your integration.
 
-1. Enter a name for your integration.
+   * Enter a name for your integration.
 
-   Next, enter values for the **Redirect URIs** and **Origins**. A redirect URI redirects from your domain to a different URL.and the origin is a combination of a specific hostname, protocol, and port on your site, which can be shared by multiple URLs. <!-- Get better examples for this. What does this mean?: "which for the purposes of the Activity API can be any value." --> Press Enter to confirm each one.  After you confirm the value, it appears under a **Name** header.
+   * Enter values for the **Redirect URIs** and **Origins**. A redirect URI redirects from your domain to a different URL.and the origin is a combination of a specific hostname, protocol, and port on your site, which can be shared by multiple URLs. <!-- Get better examples for this. What does this mean?: "which for the purposes of the Activity API can be any value." --> Press Enter to confirm each one. After you confirm the value, it appears under a **Name** header.
 
     <div class="demo-image">
      <img src="images/7-new-form-filled-out.png"/>
@@ -77,7 +91,7 @@ There are two main procedures:
      <img src="images/8-profile-details.png"/>
     </div>
 
-1. To update your integration setting to permit JWT authentication, complete the following: 
+1. To update your integration to permit JWT authentication, do the following: 
     * Click the submenu **JSON Web Token Auth** (next to **Profile**).
     * Select the check-box for **Enable JWT grant type**.
     * From the **Allowed keys** dropdown, select **User-specific keys and global key**.
@@ -102,7 +116,7 @@ There are two main procedures:
 
    Keep this page open.
 
-1. <!-- We're missing something here - did the "touch config.yml" step get deleted? --> Add the constants (e.g. `ORGANIZATION_NAME` ) listed below; however, update the values with information that is specific to you (e.g. `'my-company-name'`). 
+1. <!-- We're missing something here - did the "touch config.yml" step get deleted? --> Add the constants (for example, `ORGANIZATION_NAME` ) listed below; however, update the values with information that is specific to you (for example, `'my-company-name'`). 
 
   
    ```CLIENT_ID = BNMWnBP3Rg
@@ -125,7 +139,7 @@ There are two main procedures:
     | `CLIENT_ID` | Found in the "Client info" section on the *Integrations > Profile* page |
     | `CLIENT_SECRET` | Found in the "Client info" section on the *Integrations > Profile* page |
     | `USER_EMAIL` | Your email address |
-    | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization id, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
+    | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization id, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) **Note**: You may need to install byebug to make the call to the endpoint. <!-- Note from Jonathan Solomon -->|
     | `ORGANIZATION_NAME` | The subdomain in your organization's URL |
 
 Now that you have completed the setup process, visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
