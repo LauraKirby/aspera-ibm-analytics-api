@@ -9,7 +9,7 @@ You must be an administrative user, and you must be added as a member in your As
 
 ## Dependencies
 
-The following examples were created using a Mac and Ruby 2.4.1. Note, copying the tokens used within this example will not work (they have been deactivated). You will need to generate tokens of your own.
+The following examples were created using a Mac and Ruby 2.4.1.
 
 * Ruby 2.4.1
 * Ruby gem manager (eg [rvm](https://rvm.io/))
@@ -26,4 +26,4 @@ The following examples were created using a Mac and Ruby 2.4.1. Note, copying th
 
 [4. Make Request to the Analytics API](./analytics-api.md)
 
-> View the source code on Github: [analytics_api_demo](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
+View the source code on Github: [analytics_api_demo](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)
