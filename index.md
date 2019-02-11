@@ -11,6 +11,14 @@ The following examples were created using a Mac and Ruby 2.4.1. Note, copying th
 
 ## Getting Started
 
+This tutorial takes you through the necessary setup to prepare your local system and Aspera on Cloud (AoC) so that you can make API calls to the AoC Activity application. We will set up the dependencies, make a request to the Files API to obtain authentication, and make authorized requests to the Analytics API. Note that we use the Files API to configure the Aspera on Cloud platform, which includes the Activity application.
+
 [1. System and Application Setup](./setup.md)
 
-[2. Obtain Files Application Authentication and Make Request to the Analytics API](./analytics-api.md)
+[2. Install Dependencies](./dependencies.md)
+
+[3. Obtain Files Application Authentication](./authentication.md)
+
+[4. Make Request to the Analytics API](./analytics-api.md)
+
+> View the source code on Github: [analytics_api_demo](https://github.com/LauraKirby/aspera-ibm-analytics-api/tree/master/analytics-api-demo)

@@ -1,10 +1,13 @@
 require 'restclient'
 require 'json'
-require 'byebug'
 require './authentication.rb'
 require './constants.rb'
 
 include Authentication
+
+# Steps 2 and 3 from the home page must be completed before
+# running this script
+
 # ------ get organization details -------
 files_url = 'https://api.qa.ibmaspera.com/api/v1/organization'
 bearer_token = log_in
