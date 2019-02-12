@@ -52,8 +52,7 @@ module Authentication
 
   def log_in
     credentials = generate_auth_credentials
-    # "#{ENVIRONMENT}" should be removed below when using production environments
-    files_url = "https://api.#{ENVIRONMENT}ibmaspera.com/api/v1/oauth2/#{ORGANIZATION_NAME}/token"
+    files_url = "https://api.ibmaspera.com/api/v1/oauth2/#{ORGANIZATION_NAME}/token"
     parameters = "assertion=#{credentials[:token]}&grant_type=#{credentials[:grant_type]}&scope=#{credentials[:scope]}"
 
     # setup Files request object

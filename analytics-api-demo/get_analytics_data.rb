@@ -21,7 +21,7 @@ include Authentication
 
 def generate_request_url
   # analytics base url
-  analytics_url = "https://api.qa.ibmaspera.com/analytics/v2/organizations/#{ORGANIZATION_ID}/"
+  analytics_url = "https://api.ibmaspera.com/analytics/v2/organizations/#{ORGANIZATION_ID}/"
   # resource within analytics application
   analytics_resource = 'transfers'
   # query parameters

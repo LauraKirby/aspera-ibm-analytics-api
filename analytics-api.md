@@ -38,7 +38,7 @@
 
     def generate_request_url
       # analytics base url
-      analytics_url = "https://api.qa.ibmaspera.com/analytics/v2/organizations/#{ORGANIZATION_ID}/"
+      analytics_url = "https://api.ibmaspera.com/analytics/v2/organizations/#{ORGANIZATION_ID}/"
       # resource within analytics application
       analytics_resource = 'transfers'
       # query parameters
@@ -190,10 +190,10 @@
                 }
           ],
           "first": {
-            "href": "https://api.qa.ibmaspera.com/analytics/v2/organizations/13355/transfers"
+            "href": "https://api.ibmaspera.com/analytics/v2/organizations/13355/transfers"
           },
           "next": {
-            "href": "https://api.qa.ibmaspera.com/analytics/v2/organizations/13355/transfers?start_time=2019-01-19T23:00:00Z&stop_time=2019-01-26T23:00:00Z&limit=3&next=16q0q4q0q0q52q43q0q0q6q52q95q50q48q49q57q0q35q0q8q21q125q84q173q216q110q192q184q16q91q73q206q217q181q22q74q155q181q101q163q169q37q32q223q177q7q114q101q99q101q105q118q101q240q127q255q255q249q240q127q255q255q253"
+            "href": "https://api.ibmaspera.com/analytics/v2/organizations/13355/transfers?start_time=2019-01-19T23:00:00Z&stop_time=2019-01-26T23:00:00Z&limit=3&next=16q0q4q0q0q52q43q0q0q6q52q95q50q48q49q57q0q35q0q8q21q125q84q173q216q110q192q184q16q91q73q206q217q181q22q74q155q181q101q163q169q37q32q223q177q7q114q101q99q101q105q118q101q240q127q255q255q249q240q127q255q255q253"
           }
     }
     ```
@@ -279,10 +279,10 @@
                 }
           ],
           "first": {
-            "href": "https://api.qa.ibmaspera.com/analytics/v2/organizations/13355/transfers"
+            "href": "https://api.ibmaspera.com/analytics/v2/organizations/13355/transfers"
           },
           "next": {
-            "href": "https://api.qa.ibmaspera.com/analytics/v2/organizations/13355/transfers?start_time=2019-01-19T23:00:00Z&stop_time=2019-01-26T23:00:00Z&limit=3&next=16q0q4q0q0q52q43q0q0q6q52q95q50q48q49q57q0q35q0q8q21q125q84q173q216q110q192q184q16q91q73q206q217q181q22q74q155q181q101q163q169q37q32q223q177q7q114q101q99q101q105q118q101q240q127q255q255q249q240q127q255q255q253"
+            "href": "https://api.ibmaspera.com/analytics/v2/organizations/13355/transfers?start_time=2019-01-19T23:00:00Z&stop_time=2019-01-26T23:00:00Z&limit=3&next=16q0q4q0q0q52q43q0q0q6q52q95q50q48q49q57q0q35q0q8q21q125q84q173q216q110q192q184q16q91q73q206q217q181q22q74q155q181q101q163q169q37q32q223q177q7q114q101q99q101q105q118q101q240q127q255q255q249q240q127q255q255q253"
           }
     }
     ```

@@ -1,9 +1,6 @@
-# 'ENVIRONMENT' should be removed before given to customer for use
-ENVIRONMENT = 'qa.'
-
 # See your 'integration' information within AoC
-CLIENT_ID = 'BNOlkX_7pw'
-CLIENT_SECRET = 'K8k7sa1O4Wsfz_FLJDJ1VE2-RwheF93v_Ogg_u0CLyJvn7IEBvb-JkfP81ariUDLNWDy_hFSL7net6LL_HwG0oDEMS-uYgSL'
+CLIENT_ID = 'BmVFmNqQ0g'
+CLIENT_SECRET = 'XPIrEsdeYvVI96i2jyzqCovwUjY4lCvgciL_0d7XjltOAoYagLnUds2GYC-uv69OIuZo3B-XcvBzcDT7Wu7wJkN7DwLKkfVC'
 
 # This must be a user's email address who has administrative authority
 USER_EMAIL = 'laurakirby26@gmail.com'

@@ -52,8 +52,6 @@ There are two main procedures:
 
 ## II. Create an integration with AoC
 
-<!-- Jonathan Solomon: remove "qa" from all sample URLs, including screenshots; it's confusing. -->
-
 1. Go to `*.ibmaspera.com`, where `*` represents your subdomain. Your subdomain will be unique to your organization in Aspera on Cloud. In this tutorial `turbo` is used as the subdomain.
 
 <div class="demo-image">

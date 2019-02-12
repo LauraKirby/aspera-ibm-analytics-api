@@ -9,7 +9,7 @@ include Authentication
 # running this script
 
 # ------ get organization details -------
-files_url = 'https://api.qa.ibmaspera.com/api/v1/organization'
+files_url = 'https://api.ibmaspera.com/api/v1/organization'
 bearer_token = log_in
 
 begin
