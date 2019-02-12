@@ -9,4 +9,4 @@ USER_EMAIL = 'laurakirby26@gmail.com'
 # Files API request to obtain your organization details
 # ORGANIZATION_ID is required for Analytics API calls
 ORGANIZATION_ID = 13355
-ORGANIZATION_NAME = 'turbo'
+ORGANIZATION_SUBDOMAIN = 'turbo'

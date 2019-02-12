@@ -52,7 +52,7 @@ module Authentication
 
   def log_in
     credentials = generate_auth_credentials
-    files_url = "https://api.ibmaspera.com/api/v1/oauth2/#{ORGANIZATION_NAME}/token"
+    files_url = "https://api.ibmaspera.com/api/v1/oauth2/#{ORGANIZATION_SUBDOMAIN}/token"
     parameters = "assertion=#{credentials[:token]}&grant_type=#{credentials[:grant_type]}&scope=#{credentials[:scope]}"
 
     # setup Files request object

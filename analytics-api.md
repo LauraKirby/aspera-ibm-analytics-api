@@ -71,7 +71,7 @@
 
     ```ruby
     # --------------------------------------
-    # Step 3: get page 2 of transfers
+    # Step 4: get page 2 of transfers
     # --------------------------------------
 
     # given our query parameter `limit=3`,
