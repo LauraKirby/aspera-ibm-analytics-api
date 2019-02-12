@@ -20,7 +20,7 @@ There are two main procedures:
 
 1. Generate private and public keys:
 
-    <!-- Don't know what this paragraph means: -->All files created containing security information such as the private and public keys should not be checked into git. They have been shown here and can be found in the source code for the purpose of demonstration. All keys shown are no longer valid.
+    All files created containing security information such as the private and public keys should not be tracked by version control. They have only been included in the source code for the purpose of demonstration. All keys shown are no longer valid.
 
     ```bash
     ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
