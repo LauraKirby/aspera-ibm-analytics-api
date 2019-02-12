@@ -17,4 +17,4 @@
     # from project root directory
     bundle
     ```
-Now that you have installing dependencies, visit [Make Analytics Requests](./analytics-api.md) to learn about making requests to the Analytics API.
+Now that you have completed installing the dependencies, visit [Make Analytics Requests](./analytics-api.md) to learn about making requests to the Analytics API.
