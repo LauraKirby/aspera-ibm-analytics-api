@@ -1,6 +1,6 @@
 This tutorial takes you through the necessary setup to prepare your local system and Aspera on Cloud (AoC) so that you can make API calls to the AoC Activity application. We will set up the dependencies, make a request to the Files API to obtain authentication, and make authorized requests to the Analytics API. Note that we use the Files API to configure the Aspera on Cloud platform, which includes the Activity application.
 
-## Prerequisite
+## Prerequisites
 
 You must be an administrative user, and you must be added as a member in your Aspera on Cloud (AoC) organization.
 1. To confirm that you are a member, open the Admin app in AoC.
