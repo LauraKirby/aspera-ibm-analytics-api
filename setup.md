@@ -101,7 +101,7 @@ There are two main procedures:
      <img src="images/12-allow-gloabl-keys.png"/>
     </div>
 
-    A field called **Public Key (PEM Format)** now appears. Copy the key found in `analytics-api-demo/*.key.public` (which you created in step 3). Include the text, `-----BEGIN PUBLIC KEY------`` and -----END PUBLIC KEY------`.
+    A field called **Public Key (PEM Format)** now appears. Copy the complete contents of `analytics-api-demo/*.key.public` (which you created in step 3).
 
     <div class="demo-image">
      <img src="images/13-copy-public-key.png"/>
@@ -111,7 +111,7 @@ There are two main procedures:
 
    Keep this page open.
 
-1. <!-- We're missing something here - did the "touch config.yml" step get deleted? --> Add the constants (for example, `ORGANIZATION_NAME` ) listed below; however, update the values with information that is specific to you (for example, `'my-company-name'`).
+1. Add the constants listed below (for example, `ORGANIZATION_NAME`) to the file `constants.rb`. Use values that are specific to your configuration (for example, `'my-company-name'`).
 
 
    ```CLIENT_ID = BNMWnBP3Rg
@@ -134,7 +134,7 @@ There are two main procedures:
     | `CLIENT_ID` | Found in the "Client info" section on the *Integrations > Profile* page |
     | `CLIENT_SECRET` | Found in the "Client info" section on the *Integrations > Profile* page |
     | `USER_EMAIL` | Your email address |
-    | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization ID, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) **Note**: You may need to install byebug to make the call to the endpoint. <!-- Note from Jonathan Solomon -->|
+    | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization ID, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
     | `ORGANIZATION_NAME` | The subdomain in your organization's URL |
 
 Now that you have completed the setup process, visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
