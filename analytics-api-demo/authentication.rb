@@ -21,6 +21,7 @@ module Authentication
     puts pretty
   end
 
+  # generate JWT
   def generate_auth_credentials
     private_key = OpenSSL::PKey::RSA.new(File.read('jwtRS256.key'))
     time = Time.now.to_i
@@ -50,6 +51,7 @@ module Authentication
     { token: jwt_token, grant_type: grant_type, scope: scope }
   end
 
+  # log in user
   def log_in
     credentials = generate_auth_credentials
     files_url = "https://api.ibmaspera.com/api/v1/oauth2/#{ORGANIZATION_SUBDOMAIN}/token"

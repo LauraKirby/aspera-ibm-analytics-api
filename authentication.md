@@ -14,14 +14,16 @@
 1. To declare the Authentication module, add this code to the bottom of `./authentication.rb`:
     ```ruby
     module Authentication
-    # in the next few steps, we will be adding methods here.
+      # helper methods
 
+      # generate JWT
 
+      # log in user
 
     end
     ```
 
-1. To include helper methods, for printing and encoding data, add this code inside of the `Authentication` module within `./authentication.rb`:
+1. To include helper methods, for printing and encoding data, add this code just below `# helper methods`, which is in the `Authentication` module, within `./authentication.rb`:
 
     ```ruby
     # helper methods
@@ -35,9 +37,10 @@
     end
     ```
 
-1. To specify values for the JSON web token (JWT) header keys, add this code inside of the `Authentication` module within  `./authentication.rb`:
+1. To specify values for the JSON web token (JWT) header keys, add this code just below `# generate JWT`, which is in the `Authentication` module, within `./authentication.rb`:
 
     ```ruby
+    # generate JWT
     def generate_auth_credentials
       private_key = OpenSSL::PKey::RSA.new(File.read('jwtRS256.key'))
       time = Time.now.to_i
@@ -76,9 +79,10 @@
 
 
 
-1. To set up the authentication request to the Files API, add this code inside of the `Authentication` module within `./authentication.rb`:
+1. To set up the authentication request to the Files API, add this code just below `# log in user`, which is in the `Authentication` module, within `./authentication.rb`:
 
     ```ruby
+    # log in user
     def log_in
       credentials = generate_auth_credentials
       files_url = "https://api.ibmaspera.com/api/v1/oauth2/#{ORGANIZATION_NAME}/token"
