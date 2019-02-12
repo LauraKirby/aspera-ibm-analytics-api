@@ -137,4 +137,4 @@ There are two main procedures:
     | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization ID, see the Files API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
     | `ORGANIZATION_NAME` | The subdomain in your organization's URL |
 
-Now that you have completed the setup process, visit [Install Dependencies](./dependencies.md) to learn about making requests to the Analytics API.
+Now that you have completed the setup process, visit [Install Dependencies](./dependencies.md) to learn about installing system dependencies for making making requests to the Analytics API.
