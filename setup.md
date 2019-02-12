@@ -134,7 +134,7 @@ There are two main procedures:
     | `CLIENT_ID` | Found in the "Client info" section on the *Integrations > Profile* page |
     | `CLIENT_SECRET` | Found in the "Client info" section on the *Integrations > Profile* page |
     | `USER_EMAIL` | Your email address |
-    | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization ID, see the API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
+    | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization ID, see the Files API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
     | `ORGANIZATION_NAME` | The subdomain in your organization's URL |
 
-Now that you have completed the setup process, visit [API Requests](./analytics-api.md) to learn about making requests to the Analytics API.
+Now that you have completed the setup process, visit [Install Dependencies](./dependencies.md) to learn about making requests to the Analytics API.
