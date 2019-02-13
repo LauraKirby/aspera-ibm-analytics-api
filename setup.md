@@ -109,14 +109,14 @@ There are two main procedures:
 
    Keep this page open.
 
-1. Add the constants listed below (for example, `ORGANIZATION_NAME`) to the file `constants.rb`. Use values that are specific to your configuration (for example, `'my-company-name'`).
+1. Add the constants listed below (for example, `ORGANIZATION_SUBDOMAIN`) to the file `constants.rb`. Use values that are specific to your configuration (for example, `'my-company-name'`).
 
 
    ```CLIENT_ID = BNMWnBP3Rg
    CLIENT_SECRET = 'RpRQHCCzLOMsFo7pyCegd2W58FxmWKep'
    USER_EMAIL = 'laurakirby26@gmail.com'
    ORGANIZATION_ID = 13355
-   ORGANIZATION_NAME = 'turbo'
+   ORGANIZATION_SUBDOMAIN = 'turbo'
    ```
 
    You will need to copy information from your integration's Profile page.
@@ -133,6 +133,6 @@ There are two main procedures:
     | `CLIENT_SECRET` | Found in the "Client info" section on the *Integrations > Profile* page |
     | `USER_EMAIL` | Your email address |
     | `ORGANIZATION_ID` | The ID for your organization in Aspera on Cloud. If you do not know your organization ID, see the Files API call within [get_organization.rb](https://github.com/LauraKirby/aspera-ibm-analytics-api/blob/master/analytics-api-demo/get_organization.rb) |
-    | `ORGANIZATION_NAME` | The subdomain in your organization's URL |
+    | `ORGANIZATION_SUBDOMAIN` | The subdomain in your organization's URL |
 
 Now that you have completed the setup process, visit [Install Dependencies](./dependencies.md) to learn about installing system dependencies for making making requests to the Analytics API.
