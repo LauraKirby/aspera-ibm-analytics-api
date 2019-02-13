@@ -20,7 +20,7 @@ There are two main procedures:
 
 1. Generate private and public keys:
 
-    *Note:* To maintain security, Aspera recommends that you do not use version control to track files that contain security information. This includes the private and public keys that you create in this step. Example keys shown in this tutorial are included for purposes of demonstration only and are no longer valid.
+    **Note:** To maintain security, Aspera recommends that you do not use version control to track files that contain security information. This includes the private and public keys that you create in this step. Example keys shown in this tutorial are included for purposes of demonstration only and are no longer valid.
 
     ```bash
     ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
