@@ -1,6 +1,6 @@
-# System and Application Setup
+# Configuring Local System and Aspera on Cloud 
 
-In this part, we will walk through the necessary setup to prepare your local system and AoC so that you can make API calls to the Activity application.
+In this part, we will walk through the necessary setup to configure your local system and the Aspera on Cloud Platform (AoC) so that you can make API calls to the Activity application.
 
 There are two main procedures:
 
@@ -20,7 +20,7 @@ There are two main procedures:
 
 1. Generate private and public keys:
 
-    All files created containing security information such as the private and public keys should not be tracked by version control. They have only been included in the source code for the purpose of demonstration. All keys shown are no longer valid.
+    *Note:* To maintain security, Aspera recommends that you do not use version control to track files that contain security information. This includes the private and public keys that you create in this step. Example keys shown in this tutorial are included for purposes of demonstration only and are no longer valid.
 
     ```bash
     ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
@@ -70,7 +70,7 @@ There are two main procedures:
 
    * Enter a name for your integration.
 
-   * Enter values for the **Redirect URIs** and **Origins**. A redirect URI redirects from your domain to a different URL.and the origin is a combination of a specific hostname, protocol, and port on your site, which can be shared by multiple URLs. <!-- Get better examples for this. What does this mean?: "which for the purposes of the Activity API can be any value." --> Press Enter to confirm each one. After you confirm the value, it appears under a **Name** header.
+   * Enter values for **Redirect URIs** and **Origins**. If you do not already have a designated value for each, enter a placeholder value, such as `www.company.com`. (These values are not needed for the Files API, but they are required fields in the current template.) After you enter each value, it appears under a **Name** header.
 
     <div class="demo-image">
      <img src="images/7-new-form-filled-out.png"/>
