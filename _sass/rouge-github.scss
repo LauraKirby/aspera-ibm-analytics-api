@@ -322,8 +322,9 @@ nav {
   text-align: center;
   background-color: #454545;
   z-index: 10;
+  text-align: left;
   a {
-    padding: 0 10%;
+    padding: 10px;
   }
 }
 
@@ -331,6 +332,7 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
+  padding: 10px;
 }
 
 .top-container {
