@@ -1,4 +1,8 @@
-# See your 'integration' information within AoC
+# Below is an example of what the "constants" will look like.
+# You need to populate your specific values.
+# See the "Configuration" page, subsection "Create an Integration with AoC"
+# for information on how to generate this key.
+
 CLIENT_ID = 'BmVFmNqQ0g'
 CLIENT_SECRET = 'XPIrEsdeYvVI96i2jyzqCovwUjY4lCvgciL_0d7XjltOAoYagLnUds2GYC-uv69OIuZo3B-XcvBzcDT7Wu7wJkN7DwLKkfVC'
 
