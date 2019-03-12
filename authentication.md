@@ -114,8 +114,9 @@
 
     * Add method call
 
-    ```
-    login_in
+    ```ruby
+    include Authentication
+    log_in
     ```
 
     * Run the Ruby script in Terminal
@@ -135,4 +136,11 @@
           "expires_in": 86399,
           "scope": "admin:all"
     }
+    ```
+
+1. Once you have confirmed that the `log_in` method is working, remove the following lines, shown below (or comment them out by placing a `#` in front of them):
+
+    ```ruby
+    # include Authentication
+    # log_in
     ```
