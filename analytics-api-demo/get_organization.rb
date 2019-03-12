@@ -5,19 +5,20 @@ require './constants.rb'
 
 include Authentication
 
-# -----------------------------------
-# To run this script:
-# -----------------------------------
+# ---------------------------------------------------
+# To run this script first complete the following:
+# ---------------------------------------------------
 
-# 1) Complete step 1 "System and Application Setup".
-# Excluding the addition of ORGANIZATION_ID constant in constants.rb.
-# Referenced in the final step.
-# https://laurakirby.github.io/aspera-ibm-analytics-api/setup.html
+# 1) "Configuring Your Local System and Aspera on Cloud".
+# Excluding the addition of ORGANIZATION_ID constant in constants.rb,
+# which is referenced in the final step.
+# https://developer.ibm.com/aspera/docs/tutorial-aspera-on-cloud-activity-api/configure-your-local-system-and-aspera-on-cloud/
 
-# 2) Complete step 2, "Install Dependencies"
-# https://laurakirby.github.io/aspera-ibm-analytics-api/dependencies.html
+# 2) "Installing Dependencies for the Activity API"
+# https://developer.ibm.com/aspera/docs/tutorial-aspera-on-cloud-activity-api/install-dependencies-for-the-activity-api/
 
-# 3) Complete step 3, "Obtain Files Application Authentication"
+# 3) "Setting up Authentication for the Activity API"
+# https://developer.ibm.com/aspera/docs/tutorial-aspera-on-cloud-activity-api/authentication-for-the-activity-api/
 
 # 4) Run `ruby get_organization.rb` from terminal.
 
@@ -38,4 +39,3 @@ begin
 rescue Exception => e
   puts e
 end
-
